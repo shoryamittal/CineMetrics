@@ -1,0 +1,29 @@
+﻿# Byte-compiled / optimized / DLL files
+__pycache__/
+*.py[cod]
+*.class
+*.so
+.Python
+
+# Virtual environments
+venv/
+ENV/
+env/
+.env
+
+# Large raw synthetic warehouse data dumps (can be regenerated via scripts/generate_ott_synthetic_data.py)
+# GitHub enforces a 100MB file limit (data/synthetic/fact_forecast.csv is ~400MB)
+data/synthetic/*.csv
+!data/synthetic/.gitkeep
+*_backup_*
+*.bak
+
+# Temporary / scratch
+scratch/
+*.log
+
+# Operating System & IDE
+.DS_Store
+Thumbs.db
+.vscode/
+.idea/

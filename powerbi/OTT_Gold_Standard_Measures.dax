@@ -1,0 +1,18 @@
+// Model relationships: all fact tables connect to Dim Content, Dim Region, and Dim Calendar.
+
+Total Revenue = SUM ( fact_revenue[revenue_amount] )
+Total Content Cost = SUM ( fact_content_cost[total_content_cost] )
+Marketing Spend = SUM ( fact_marketing[marketing_spend] )
+Total Investment = [Total Content Cost] + [Marketing Spend]
+Contribution Profit = [Total Revenue] - [Total Investment]
+Portfolio ROI = DIVIDE ( [Contribution Profit], [Total Investment] )
+Total Watch Hours = SUM ( fact_viewing_events[watch_hours] )
+Total Views = COUNTROWS ( fact_viewing_events )
+Revenue per Watch Hour = DIVIDE ( [Total Revenue], [Total Watch Hours] )
+Average Completion Rate = AVERAGE ( fact_engagement[completion_rate] )
+Average Rewatch Rate = AVERAGE ( fact_engagement[rewatch_rate] )
+Positive Engagement Rate = DIVIDE ( SUM ( fact_engagement[likes] ), SUM ( fact_engagement[likes] ) + SUM ( fact_engagement[dislikes] ) )
+Marketing ROI = DIVIDE ( SUM ( fact_marketing[attributed_revenue] ) - [Marketing Spend], [Marketing Spend] )
+Forecast Revenue 30D = CALCULATE ( SUM ( fact_forecast[forecast_value] ), fact_forecast[metric_name] = "REVENUE" )
+Forecast Demand 30D = CALCULATE ( SUM ( fact_forecast[forecast_value] ), fact_forecast[metric_name] = "VIEWING_DEMAND" )
+Revenue Variance to Forecast = [Total Revenue] - [Forecast Revenue 30D]

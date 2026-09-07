@@ -1,0 +1,913 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="utf-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1">
+  <title>ECDIP · CinePulse Next-Gen Streaming Decision Intelligence</title>
+  <link rel="preconnect" href="https://fonts.googleapis.com">
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+  <link href="https://fonts.googleapis.com/css2?family=Plus+Jakarta+Sans:wght@300;400;500;600;700;800&family=JetBrains+Mono:wght@400;500;600;700&display=swap" rel="stylesheet">
+  <link rel="stylesheet" href="styles.css">
+  <script>
+    // Immediate executive light theme initialization (prevents flash)
+    try {
+      var savedTheme = localStorage.getItem('cinepulse_theme_v2');
+      if (!savedTheme) {
+        savedTheme = 'light';
+        localStorage.setItem('cinepulse_theme_v2', 'light');
+        localStorage.setItem('cinepulse_theme', 'light');
+      }
+      if (savedTheme === 'dark') {
+        document.documentElement.classList.add('dark-theme');
+      } else {
+        document.documentElement.classList.add('light-theme');
+      }
+    } catch(e) {}
+  </script>
+</head>
+<body class="light-theme">
+  <!-- Live Breaking Studio Alert Ticker Tape -->
+  <div class="ticker-tape" id="tickerTape">
+    <div class="ticker-badge">LIVE STUDIO ALERTS</div>
+    <div class="ticker-track">
+      <div class="ticker-item">⚡ <strong>VIRAL SPIKE:</strong> <em>'Tumbbad'</em> midnight streaming velocity up +48% in South Asia &bull; Recommend prime hero slot</div>
+      <div class="ticker-item">🛡️ <strong>CHURN DEFENSE:</strong> <em>'Stranger Things'</em> Season 4 completion reached 87.3% &bull; Bridge content sequence engaged for 384K accounts</div>
+      <div class="ticker-item">💰 <strong>AD-TIER SURGE:</strong> <em>'Squid Game'</em> commanding record $46.00/CPM &bull; Ad revenue pacing +28% ahead of quarterly forecast</div>
+      <div class="ticker-item">⚠ <strong>RIGHTS RENEGOTIATION:</strong> Warner Bros library renewal window opens in 34 days &bull; Projected savings: ₹340M ($4.1M)</div>
+      <div class="ticker-item">🌟 <strong>GLOBAL BENCHMARK:</strong> <em>'RRR'</em> and <em>'3 Idiots'</em> surpass 1,000% ROI milestone across international territories</div>
+    </div>
+  </div>
+
+  <!-- App Layout -->
+  <div class="app-layout">
+    <!-- Sidebar -->
+    <aside class="sidebar" id="sidebar">
+      <div class="brand">
+        <div class="brand-badge">
+          <svg width="22" height="22" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5" stroke-linecap="round" stroke-linejoin="round">
+            <polygon points="5 3 19 12 5 21 5 3"></polygon>
+          </svg>
+        </div>
+        <div class="brand-text">
+          <span class="brand-title">CinePulse</span>
+          <span class="brand-sub">DECISION INTELLIGENCE OS</span>
+        </div>
+      </div>
+
+      <div class="nav-section-label">STUDIO INTELLIGENCE</div>
+      <nav class="nav-menu">
+        <button class="nav-item active" data-tab="overview">
+          <svg width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><rect x="3" y="3" width="7" height="7"></rect><rect x="14" y="3" width="7" height="7"></rect><rect x="14" y="14" width="7" height="7"></rect><rect x="3" y="14" width="7" height="7"></rect></svg>
+          <span>Command Center</span>
+        </button>
+
+        <button class="nav-item" data-tab="movies">
+          <svg width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><rect x="2" y="2" width="20" height="20" rx="2.18" ry="2.18"></rect><line x1="7" y1="2" x2="7" y2="22"></line><line x1="17" y1="2" x2="17" y2="22"></line><line x1="2" y1="12" x2="22" y2="12"></line><line x1="2" y1="7" x2="7" y2="7"></line><line x1="2" y1="17" x2="7" y2="17"></line><line x1="17" y1="17" x2="22" y2="17"></line><line x1="17" y1="7" x2="22" y2="7"></line></svg>
+          <span>Content Explorer</span>
+          <span class="nav-pill" id="realCountBadge">124</span>
+        </button>
+
+        <!-- CRITICAL NEW FEATURE: Head to Head Battle Arena -->
+        <button class="nav-item feature-hot" data-tab="arena">
+          <svg width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M14.5 2H6a2 2 0 0 0-2 2v16a2 2 0 0 0 2 2h12a2 2 0 0 0 2-2V7.5L14.5 2z"></path><polyline points="14 2 14 8 20 8"></polyline><line x1="8" y1="13" x2="16" y2="13"></line><line x1="8" y1="17" x2="16" y2="17"></line><polyline points="10 9 9 9 8 9"></polyline></svg>
+          <span>Head-to-Head Arena</span>
+          <span class="pulse-badge">NEW</span>
+        </button>
+
+        <!-- CRITICAL NEW FEATURE: Churn Defense & Bridge Engine -->
+        <button class="nav-item feature-hot" data-tab="churn">
+          <svg width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M12 22s8-4 8-10V5l-8-3-8 3v7c0 6 8 10 8 10z"></path></svg>
+          <span>Churn Defense</span>
+          <span class="pulse-badge">CRITICAL</span>
+        </button>
+
+        <!-- CRITICAL NEW FEATURE: Ad-Tier & Hybrid AVOD -->
+        <button class="nav-item" data-tab="adtier">
+          <svg width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><circle cx="12" cy="12" r="10"></circle><path d="M16 8h-6a2 2 0 1 0 0 4h4a2 2 0 1 1 0 4H8"></path><line x1="12" y1="6" x2="12" y2="8"></line><line x1="12" y1="16" x2="12" y2="18"></line></svg>
+          <span>Ad-Tier Economics</span>
+        </button>
+
+        <button class="nav-item" data-tab="portfolio">
+          <svg width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M21.21 15.89A10 10 0 1 1 8 2.83"></path><path d="M22 12A10 10 0 0 0 12 2v10z"></path></svg>
+          <span>Financial Matrix</span>
+        </button>
+
+        <button class="nav-item" data-tab="viewership">
+          <svg width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M1 12s4-8 11-8 11 8 11 8-4 8-11 8-11-8-11-8z"></path><circle cx="12" cy="12" r="3"></circle></svg>
+          <span>Audience & Funnels</span>
+        </button>
+
+        <button class="nav-item" data-tab="regional">
+          <svg width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><circle cx="12" cy="12" r="10"></circle><line x1="2" y1="12" x2="22" y2="12"></line><path d="M12 2a15.3 15.3 0 0 1 4 10 15.3 15.3 0 0 1-4 10 15.3 15.3 0 0 1-4-10 15.3 15.3 0 0 1 4-10z"></path></svg>
+          <span>Global Markets</span>
+        </button>
+
+        <button class="nav-item highlight" data-tab="simulator">
+          <svg width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><polygon points="13 2 3 14 12 14 11 22 21 10 12 10 13 2"></polygon></svg>
+          <span>AI Decision Simulator</span>
+        </button>
+      </nav>
+
+      <div class="sidebar-footer">
+        <button class="copilot-nav-trigger" id="openCopilotBtn">
+          <div class="copilot-icon-glow">✨</div>
+          <div class="copilot-label">
+            <strong>Ask CinePulse AI</strong>
+            <span>Studio Strategic Copilot</span>
+          </div>
+        </button>
+
+        <!-- Sidebar Dedicated Theme Switcher -->
+        <div class="sidebar-theme-card">
+          <div class="sidebar-theme-header">
+            <span>APPEARANCE</span>
+          </div>
+          <div class="sidebar-theme-buttons">
+            <button class="sb-theme-btn active" id="sbThemeLight" title="Executive Light Theme">☀️ Light</button>
+            <button class="sb-theme-btn" id="sbThemeDark" title="Obsidian Dark Theme">🌙 Dark</button>
+          </div>
+        </div>
+      </div>
+    </aside>
+
+    <!-- Main Viewport -->
+    <main class="main-viewport">
+      <!-- Top Header -->
+      <header class="top-header">
+        <div class="header-left">
+          <h1 id="pageTitle">Executive Command Center</h1>
+          <p class="header-sub">Strategic Decision Intelligence, Churn Defense & Capital Efficiency Layer</p>
+        </div>
+
+        <div class="header-controls">
+          <!-- Currency Toggle -->
+          <div class="toggle-group currency-toggle" role="group" aria-label="Currency toggle">
+            <button id="currINR" class="toggle-btn active">₹ INR</button>
+            <button id="currUSD" class="toggle-btn">$ USD</button>
+          </div>
+
+          <!-- Theme Switcher Pill -->
+          <div class="theme-switcher-pill" role="group" aria-label="Color theme switcher">
+            <span class="theme-pill-label">THEME</span>
+            <div class="toggle-group theme-toggle">
+              <button id="themeLight" class="toggle-btn active" title="Switch to Executive Light Mode">
+                <svg width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5"><circle cx="12" cy="12" r="5"></circle><line x1="12" y1="1" x2="12" y2="3"></line><line x1="12" y1="21" x2="12" y2="23"></line><line x1="4.22" y1="4.22" x2="5.64" y2="5.64"></line><line x1="18.36" y1="18.36" x2="19.78" y2="19.78"></line><line x1="1" y1="12" x2="3" y2="12"></line><line x1="21" y1="12" x2="23" y2="12"></line><line x1="4.22" y1="19.78" x2="5.64" y2="18.36"></line><line x1="18.36" y1="5.64" x2="19.78" y2="4.22"></line></svg>
+                <span>Light</span>
+              </button>
+              <button id="themeDark" class="toggle-btn" title="Switch to Obsidian Dark Mode">
+                <svg width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5"><path d="M21 12.79A9 9 0 1 1 11.21 3 7 7 0 0 0 21 12.79z"></path></svg>
+                <span>Dark</span>
+              </button>
+            </div>
+          </div>
+
+          <!-- Timeframe Selector -->
+          <div class="timeframe-select">
+            <select id="timeframeSelect" aria-label="Select Timeframe">
+              <option value="LTM" selected>Last 12 Months (LTM)</option>
+              <option value="YTD">Year to Date (YTD)</option>
+              <option value="Q4">Current Quarter (Q4)</option>
+              <option value="ALL">All-Time Catalog</option>
+            </select>
+          </div>
+
+          <!-- CSV Upload -->
+          <label class="btn btn-secondary upload-btn">
+            <input id="csvFile" type="file" accept=".csv,text/csv">
+            <svg width="15" height="15" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M21 15v4a2 2 0 0 1-2 2H5a2 2 0 0 1-2-2v-4"></path><polyline points="17 8 12 3 7 8"></polyline><line x1="12" y1="3" x2="12" y2="15"></line></svg>
+            <span>Import CSV</span>
+          </label>
+
+          <!-- Export Report -->
+          <button id="exportBtn" class="btn btn-primary">
+            <svg width="15" height="15" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M21 15v4a2 2 0 0 1-2 2H5a2 2 0 0 1-2-2v-4"></path><polyline points="7 10 12 15 17 10"></polyline><line x1="12" y1="15" x2="12" y2="3"></line></svg>
+            <span>Export Report</span>
+          </button>
+        </div>
+      </header>
+
+      <!-- VIEW 1: EXECUTIVE COMMAND CENTER -->
+      <section id="view-overview" class="view-panel active">
+        <!-- Hero Metrics Row -->
+        <div class="metrics-grid">
+          <div class="metric-card glow-cyan">
+            <div class="metric-header">
+              <span class="metric-label">TOTAL PLATFORM REVENUE</span>
+              <span class="trend-pill positive">+14.2% YoY</span>
+            </div>
+            <div class="metric-value" id="kpiTotalRevenue">₹3.48B</div>
+            <div class="metric-footer">
+              <span class="sub-metric">SVOD (67%) + AVOD Ads (33%)</span>
+              <div class="sparkline-bar"><div class="fill" style="width: 82%;"></div></div>
+            </div>
+          </div>
+
+          <div class="metric-card glow-violet">
+            <div class="metric-header">
+              <span class="metric-label">TOTAL CONTENT INVESTMENT</span>
+              <span class="trend-pill neutral">Amortized</span>
+            </div>
+            <div class="metric-value" id="kpiContentCost">₹2.02B</div>
+            <div class="metric-footer">
+              <span class="sub-metric">Production (79.7%) + Licensing (7.2%)</span>
+              <div class="sparkline-bar"><div class="fill fill-violet" style="width: 65%;"></div></div>
+            </div>
+          </div>
+
+          <div class="metric-card glow-emerald">
+            <div class="metric-header">
+              <span class="metric-label">NET CONTRIBUTION PROFIT</span>
+              <span class="trend-pill positive">41.9% Margin</span>
+            </div>
+            <div class="metric-value" id="kpiContributionProfit">₹1.46B</div>
+            <div class="metric-footer">
+              <span class="sub-metric">After Platform Delivery & Marketing</span>
+              <div class="sparkline-bar"><div class="fill fill-emerald" style="width: 74%;"></div></div>
+            </div>
+          </div>
+
+          <div class="metric-card glow-red">
+            <div class="metric-header">
+              <span class="metric-label">PORTFOLIO ROI</span>
+              <span class="trend-pill positive">Top Decile</span>
+            </div>
+            <div class="metric-value" id="kpiPortfolioRoi">+72.3%</div>
+            <div class="metric-footer">
+              <span class="sub-metric">Strong Positive Streaming Capital Yield</span>
+              <div class="sparkline-bar"><div class="fill fill-red" style="width: 88%;"></div></div>
+            </div>
+          </div>
+
+          <div class="metric-card glow-amber">
+            <div class="metric-header">
+              <span class="metric-label">CHURN DEFENSE SCORE</span>
+              <span class="trend-pill positive">High Retention</span>
+            </div>
+            <div class="metric-value" id="kpiChurnDefense">94.2/100</div>
+            <div class="metric-footer">
+              <span class="sub-metric">₹185M Subscription Value Preserved</span>
+              <div class="sparkline-bar"><div class="fill fill-amber" style="width: 94%;"></div></div>
+            </div>
+          </div>
+
+          <div class="metric-card glow-blue">
+            <div class="metric-header">
+              <span class="metric-label">TOTAL WATCH HOURS</span>
+              <span class="trend-pill positive">1M Views</span>
+            </div>
+            <div class="metric-value" id="kpiWatchHours">4.11M hrs</div>
+            <div class="metric-footer">
+              <span class="sub-metric">50,000 Catalog Assets Active</span>
+              <div class="sparkline-bar"><div class="fill fill-blue" style="width: 70%;"></div></div>
+            </div>
+          </div>
+        </div>
+
+        <!-- Middle Charts Row -->
+        <div class="charts-grid">
+          <!-- Revenue vs Content Cost Bar / Trend -->
+          <div class="chart-card flex-2">
+            <div class="card-header">
+              <div>
+                <span class="eyebrow">PORTFOLIO TRAJECTORY</span>
+                <h2 class="card-title">Streaming Revenue vs. Content Capital Outlay</h2>
+              </div>
+              <div class="legend-group">
+                <span class="legend-item"><i class="dot-cyan"></i> Streaming Revenue (SVOD+AVOD)</span>
+                <span class="legend-item"><i class="dot-violet"></i> Total Content Spend</span>
+              </div>
+            </div>
+            <div class="canvas-container">
+              <canvas id="revenueCostCanvas" height="230"></canvas>
+            </div>
+          </div>
+
+          <!-- Strategic Decision Donut -->
+          <div class="chart-card flex-1">
+            <div class="card-header">
+              <div>
+                <span class="eyebrow">ACTIONABLE GOVERNANCE</span>
+                <h2 class="card-title">Executive Decision Mix</h2>
+              </div>
+            </div>
+            <div class="canvas-container center-content">
+              <canvas id="decisionDonutCanvas" width="220" height="200"></canvas>
+              <div class="decision-legend" id="decisionLegend"></div>
+            </div>
+          </div>
+        </div>
+
+        <!-- Breakout Titles & Regional Split -->
+        <div class="split-grid">
+          <div class="chart-card flex-1">
+            <div class="card-header">
+              <div>
+                <span class="eyebrow">MARQUEE PERFORMERS</span>
+                <h2 class="card-title">Top Breakout Blockbusters & Series</h2>
+              </div>
+              <button class="text-link" id="viewAllMoviesBtn">View All Movies &rarr;</button>
+            </div>
+            <div class="table-container">
+              <table class="data-table">
+                <thead>
+                  <tr>
+                    <th>Title</th>
+                    <th>Genre</th>
+                    <th>Watch Hours</th>
+                    <th>Attributed Revenue</th>
+                    <th>ROI</th>
+                    <th>Action</th>
+                  </tr>
+                </thead>
+                <tbody id="topTitlesBody"></tbody>
+              </table>
+            </div>
+          </div>
+
+          <div class="chart-card flex-1">
+            <div class="card-header">
+              <div>
+                <span class="eyebrow">GEOGRAPHIC PENETRATION</span>
+                <h2 class="card-title">Top Regional Markets</h2>
+              </div>
+            </div>
+            <div class="regional-bar-list" id="regionalList"></div>
+          </div>
+        </div>
+      </section>
+
+      <!-- VIEW 2: CONTENT EXPLORER (REAL MOVIES & SERIES) -->
+      <section id="view-movies" class="view-panel">
+        <!-- Spotlight Banner -->
+        <div class="spotlight-banner" id="spotlightBanner">
+          <div class="spotlight-content">
+            <span class="badge badge-gold">★ FEATURED TITLE OF THE MONTH</span>
+            <h2 class="spotlight-title" id="spotTitle">Inception</h2>
+            <div class="spotlight-meta">
+              <span class="meta-tag" id="spotYear">2010</span>
+              <span class="meta-tag" id="spotRating">PG-13</span>
+              <span class="meta-tag" id="spotDuration">148 min</span>
+              <span class="meta-imdb">★ <strong id="spotImdb">8.8</strong>/10</span>
+              <span class="pill pill-expand" id="spotDecision">EXPAND</span>
+            </div>
+            <p class="spotlight-desc" id="spotDesc">A thief who steals corporate secrets through dream-sharing technology is given the inverse task of planting an idea into the mind of a C.E.O.</p>
+            <div class="spotlight-actions">
+              <button class="btn btn-primary" id="spotInspectBtn">Inspect Intelligence Dossier</button>
+              <span class="spotlight-stat">ROI: <strong class="text-cyan" id="spotRoi">+195.7%</strong></span>
+              <span class="spotlight-stat">Views: <strong id="spotViews">15.5M</strong></span>
+            </div>
+          </div>
+        </div>
+
+        <!-- Filter Controls -->
+        <div class="filter-toolbar">
+          <div class="search-box">
+            <svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><circle cx="11" cy="11" r="8"></circle><line x1="21" y1="21" x2="16.65" y2="16.65"></line></svg>
+            <input type="text" id="movieSearch" placeholder="Search real movies, series, stars, directors...">
+          </div>
+
+          <div class="filter-group">
+            <select id="genreFilter" aria-label="Filter by genre">
+              <option value="ALL">All Genres</option>
+              <option value="Action">Action</option>
+              <option value="Sci-Fi">Sci-Fi</option>
+              <option value="Drama">Drama</option>
+              <option value="Crime">Crime</option>
+              <option value="Comedy">Comedy</option>
+              <option value="Animation">Animation</option>
+              <option value="Biography">Biography</option>
+              <option value="Fantasy">Fantasy</option>
+              <option value="Thriller">Thriller</option>
+            </select>
+
+            <select id="typeFilter" aria-label="Filter by type">
+              <option value="ALL">All Formats</option>
+              <option value="Movie">Movies</option>
+              <option value="Series">TV Series</option>
+            </select>
+
+            <select id="decisionFilter" aria-label="Filter by decision">
+              <option value="ALL">All Strategic Actions</option>
+              <option value="EXPAND">Expand Franchise</option>
+              <option value="RENEW">Renew Series</option>
+              <option value="MONITOR">Monitor Performance</option>
+              <option value="COST_REVIEW">Cost Review / Optimize</option>
+              <option value="EXIT_OR_RENEGOTIATE">Exit / Renegotiate</option>
+            </select>
+
+            <select id="sortFilter" aria-label="Sort content">
+              <option value="roi_desc">Sort: Highest ROI</option>
+              <option value="views_desc">Sort: Most Streamed</option>
+              <option value="imdb_desc">Sort: Highest Rated</option>
+              <option value="year_desc">Sort: Newest Releases</option>
+              <option value="budget_desc">Sort: Highest Budget</option>
+            </select>
+          </div>
+        </div>
+
+        <!-- Movie Cards Grid -->
+        <div class="movies-grid" id="moviesGrid"></div>
+      </section>
+
+      <!-- VIEW 3: HEAD-TO-HEAD BATTLE ARENA (CRITICAL CAPABILITY) -->
+      <section id="view-arena" class="view-panel">
+        <div class="panel-intro">
+          <h2>⚔️ Head-to-Head Content Battle Arena</h2>
+          <p>Direct comparative benchmarking across 5 strategic vectors: Retention Velocity, Capital Efficiency (ROI), Churn Defense, Global Reach, and Evergreen Loyalty.</p>
+        </div>
+
+        <div class="arena-selector-row">
+          <div class="arena-picker">
+            <span class="picker-label text-cyan">CONTENDER A (CYAN)</span>
+            <select id="arenaContenderA" class="arena-select"></select>
+          </div>
+          <div class="vs-badge">VS</div>
+          <div class="arena-picker">
+            <span class="picker-label text-red">CONTENDER B (CRIMSON)</span>
+            <select id="arenaContenderB" class="arena-select"></select>
+          </div>
+        </div>
+
+        <!-- Arena Battle Grid -->
+        <div class="arena-battle-grid">
+          <!-- Contender A Card -->
+          <div class="contender-card card-cyan" id="contenderACard"></div>
+
+          <!-- Center Radar Chart -->
+          <div class="chart-card radar-card">
+            <div class="card-header">
+              <span class="eyebrow">MULTI-AXIS STRATEGIC RADAR</span>
+              <h3 class="card-title">Comparative Performance Vector</h3>
+            </div>
+            <div class="canvas-container center-content">
+              <canvas id="arenaRadarCanvas" width="340" height="300"></canvas>
+            </div>
+          </div>
+
+          <!-- Contender B Card -->
+          <div class="contender-card card-red" id="contenderBCard"></div>
+        </div>
+
+        <!-- Executive Battle Verdict -->
+        <div class="arena-verdict-box" id="arenaVerdictBox"></div>
+      </section>
+
+      <!-- VIEW 4: CHURN DEFENSE & BRIDGE ENGINE (CRITICAL CAPABILITY) -->
+      <section id="view-churn" class="view-panel">
+        <div class="panel-intro">
+          <h2>🛡️ Post-Finale Churn Defense & Bridge Content Engine</h2>
+          <p>The #1 crisis in OTT today: Viewers finish binge-watching a marquee series and cancel their subscription. Our engine maps post-finale vulnerability and recommends automatic 'Bridge Titles' to prevent churn.</p>
+        </div>
+
+        <div class="churn-kpi-row">
+          <div class="metric-card glow-red">
+            <span class="metric-label">POST-FINALE CHURN RISK</span>
+            <div class="metric-value">38.4%</div>
+            <span class="sub-metric">Avg. 72hr cancellation threat after season finale</span>
+          </div>
+
+          <div class="metric-card glow-emerald">
+            <span class="metric-label">BRIDGE SUCCESS RATE</span>
+            <div class="metric-value">79.2%</div>
+            <span class="sub-metric">Viewers retained when bridge title auto-cued</span>
+          </div>
+
+          <div class="metric-card glow-cyan">
+            <span class="metric-label">ANNUAL REVENUE DEFENDED</span>
+            <div class="metric-value" id="churnDefendedRev">₹185M ($2.2M)</div>
+            <span class="sub-metric">Preserved recurring subscription capital</span>
+          </div>
+        </div>
+
+        <!-- Churn Bridge Sequences Table -->
+        <div class="chart-card">
+          <div class="card-header">
+            <div>
+              <span class="eyebrow">RETENTION SEQUENCING MATRIX</span>
+              <h3 class="card-title">High-Vulnerability Tentpoles & Programmed Bridge Titles</h3>
+            </div>
+          </div>
+          <div class="table-container">
+            <table class="data-table">
+              <thead>
+                <tr>
+                  <th>Vulnerable Tentpole</th>
+                  <th>Format / Genre</th>
+                  <th>Post-Finale Risk</th>
+                  <th>Recommended Bridge Sequence</th>
+                  <th>Predicted Save Rate</th>
+                  <th>Preserved MRR</th>
+                </tr>
+              </thead>
+              <tbody id="churnTableBody"></tbody>
+            </table>
+          </div>
+        </div>
+      </section>
+
+      <!-- VIEW 5: AD-TIER & HYBRID AVOD (CRITICAL CAPABILITY) -->
+      <section id="view-adtier" class="view-panel">
+        <div class="panel-intro">
+          <h2>💰 Hybrid AVOD & Ad-Tier Monetization Intelligence</h2>
+          <p>Modeling commercial CPM yields, viewer ad tolerance thresholds, and incremental dual-revenue streams (SVOD + AVOD).</p>
+        </div>
+
+        <div class="charts-grid">
+          <div class="chart-card flex-2">
+            <div class="card-header">
+              <div>
+                <span class="eyebrow">DUAL-REVENUE STREAMS</span>
+                <h3 class="card-title">Subscription SVOD vs. Advertising AVOD Split</h3>
+              </div>
+              <div class="legend-group">
+                <span class="legend-item"><i class="dot-cyan"></i> Subscription Revenue (67%)</span>
+                <span class="legend-item"><i class="dot-amber"></i> Programmatic Ad Yield (33%)</span>
+              </div>
+            </div>
+            <div class="canvas-container">
+              <canvas id="adRevenueCanvas" height="220"></canvas>
+            </div>
+          </div>
+
+          <div class="chart-card flex-1">
+            <div class="card-header">
+              <span class="eyebrow">HIGH-CPM LEADERBOARD</span>
+              <h3 class="card-title">Top Advertising Yielders</h3>
+            </div>
+            <div class="ad-cpm-list" id="adCpmList"></div>
+          </div>
+        </div>
+
+        <div class="chart-card">
+          <div class="card-header">
+            <span class="eyebrow">VIEWER AD-FATIGUE BENCHMARK</span>
+            <h3 class="card-title">Commercial Drop-Off Curve: Optimal Ad Break Intervals</h3>
+          </div>
+          <div class="canvas-container">
+            <canvas id="adFatigueCanvas" height="170"></canvas>
+          </div>
+        </div>
+      </section>
+
+      <!-- VIEW 6: FINANCIAL MATRIX -->
+      <section id="view-portfolio" class="view-panel">
+        <div class="panel-intro">
+          <h2>Content Economics & Investment Efficiency Matrix</h2>
+          <p>Scatter distribution of streaming revenue against total content capital investment. Bubble dimensions represent aggregate viewing demand.</p>
+        </div>
+
+        <div class="chart-card">
+          <div class="card-header">
+            <div>
+              <span class="eyebrow">PORTFOLIO ROI CLUSTERING</span>
+              <h3 class="card-title">Investment vs. Revenue (Bubble Size = Watch Hours)</h3>
+            </div>
+            <div class="scatter-legend">
+              <span class="legend-item"><i class="dot-emerald"></i> Expand (>30% ROI)</span>
+              <span class="legend-item"><i class="dot-cyan"></i> Renew (15-30% ROI)</span>
+              <span class="legend-item"><i class="dot-blue"></i> Monitor</span>
+              <span class="legend-item"><i class="dot-amber"></i> Cost Review</span>
+            </div>
+          </div>
+          <div class="canvas-container">
+            <canvas id="scatterCanvas" height="340"></canvas>
+          </div>
+        </div>
+
+        <div class="split-grid">
+          <div class="chart-card flex-1">
+            <div class="card-header">
+              <span class="eyebrow">CAPITAL ALLOCATION</span>
+              <h3 class="card-title">Cost Composition & Amortization Mix</h3>
+            </div>
+            <div class="mix-bars" id="costCompositionBars"></div>
+          </div>
+
+          <div class="chart-card flex-1">
+            <div class="card-header">
+              <span class="eyebrow">GENRE PROFITABILITY</span>
+              <h3 class="card-title">Average Streaming ROI by Genre</h3>
+            </div>
+            <div class="genre-bars" id="genreRoiBars"></div>
+          </div>
+        </div>
+      </section>
+
+      <!-- VIEW 7: AUDIENCE & VIEWERSHIP -->
+      <section id="view-viewership" class="view-panel">
+        <div class="panel-intro">
+          <h2>Audience Retention, Completion Curves & Binge Velocity</h2>
+          <p>Audience drop-off analysis from minute 0 to credits, rewatch behavior, and streaming completion funnel metrics.</p>
+        </div>
+
+        <div class="charts-grid">
+          <div class="chart-card flex-2">
+            <div class="card-header">
+              <span class="eyebrow">RETENTION LIFECYCLE</span>
+              <h3 class="card-title">Streaming Completion Drop-off Funnel</h3>
+            </div>
+            <div class="funnel-container" id="funnelContainer"></div>
+          </div>
+
+          <div class="chart-card flex-1">
+            <div class="card-header">
+              <span class="eyebrow">STICKINESS BENCHMARKS</span>
+              <h3 class="card-title">Rewatch & Binge Loyalty Leaders</h3>
+            </div>
+            <div class="loyalty-list" id="loyaltyList"></div>
+          </div>
+        </div>
+
+        <div class="chart-card">
+          <div class="card-header">
+            <span class="eyebrow">STREAMING HEATMAP</span>
+            <h3 class="card-title">Peak Global Viewer Traffic (24-Hour Distribution)</h3>
+          </div>
+          <div class="canvas-container">
+            <canvas id="trafficCanvas" height="180"></canvas>
+          </div>
+        </div>
+      </section>
+
+      <!-- VIEW 8: GLOBAL MARKETS -->
+      <section id="view-regional" class="view-panel">
+        <div class="panel-intro">
+          <h2>Territorial Performance & Localization Efficiency</h2>
+          <p>Multi-regional revenue attribution, localization cost recovery, and revenue generated per watch hour.</p>
+        </div>
+
+        <div class="table-card">
+          <table class="data-table" id="regionalDataTable">
+            <thead>
+              <tr>
+                <th>Region</th>
+                <th>Continent</th>
+                <th>Currency</th>
+                <th>Total Revenue</th>
+                <th>Watch Hours</th>
+                <th>Total Views</th>
+                <th>Revenue / Watch Hour</th>
+                <th>Market Health</th>
+              </tr>
+            </thead>
+            <tbody id="regionalTableBody"></tbody>
+          </table>
+        </div>
+      </section>
+
+      <!-- VIEW 9: AI DECISION SIMULATOR -->
+      <section id="view-simulator" class="view-panel">
+        <div class="panel-intro">
+          <h2>AI Content Greenlight & Acquisition Simulator</h2>
+          <p>Model the financial yield and subscriber growth impact of licensing or greenlighting new productions in real time.</p>
+        </div>
+
+        <div class="simulator-layout">
+          <!-- Simulator Controls -->
+          <div class="simulator-card controls-card">
+            <h3 class="sim-header">Project Parameters</h3>
+            
+            <div class="control-field">
+              <div class="control-label">
+                <span>Proposed Production Budget</span>
+                <strong id="simBudgetVal" class="text-cyan">₹120,000,000</strong>
+              </div>
+              <input type="range" id="simBudget" min="5000000" max="500000000" step="5000000" value="120000000">
+              <div class="slider-ticks"><span>₹5M</span><span>₹250M</span><span>₹500M</span></div>
+            </div>
+
+            <div class="control-field">
+              <div class="control-label">
+                <span>Target Content Format</span>
+              </div>
+              <div class="pill-selector" id="simTypeSelector">
+                <button class="pill-btn active" data-val="Movie">Blockbuster Movie</button>
+                <button class="pill-btn" data-val="Series">Original TV Series</button>
+                <button class="pill-btn" data-val="Doc">Docuseries</button>
+              </div>
+            </div>
+
+            <div class="control-field">
+              <div class="control-label">
+                <span>Genre Category</span>
+              </div>
+              <select id="simGenre" class="sim-select" aria-label="Select Genre">
+                <option value="Sci-Fi">Sci-Fi / Futuristic (High Virality)</option>
+                <option value="Action">Action / Thriller (Mass Appeal)</option>
+                <option value="Drama">Prestige Drama (Award Potential)</option>
+                <option value="Animation">Animation / Family (High Rewatch)</option>
+                <option value="Comedy">Comedy (Low Cost / Steady)</option>
+                <option value="Crime">Crime / Noir (Binge Driver)</option>
+              </select>
+            </div>
+
+            <div class="control-field">
+              <div class="control-label">
+                <span>Marketing & Promotion Allocation</span>
+                <strong id="simMktVal" class="text-violet">₹40,000,000</strong>
+              </div>
+              <input type="range" id="simMkt" min="1000000" max="150000000" step="1000000" value="40000000">
+              <div class="slider-ticks"><span>₹1M</span><span>₹75M</span><span>₹150M</span></div>
+            </div>
+
+            <div class="control-field">
+              <div class="control-label">
+                <span>Territory Rollout Footprint</span>
+                <strong id="simRegionsVal">15 Global Regions</strong>
+              </div>
+              <input type="range" id="simRegions" min="1" max="15" step="1" value="15">
+              <div class="slider-ticks"><span>Local (1)</span><span>Regional (8)</span><span>Worldwide (15)</span></div>
+            </div>
+          </div>
+
+          <!-- Simulator Prediction Output -->
+          <div class="simulator-card prediction-card">
+            <h3 class="sim-header">Predictive Decision Intelligence</h3>
+
+            <div class="verdict-banner" id="simVerdictBanner">
+              <div class="verdict-icon">★</div>
+              <div>
+                <div class="verdict-label">AI EXECUTIVE VERDICT</div>
+                <div class="verdict-title" id="simVerdict">HIGH CONFIDENCE GREENLIGHT</div>
+              </div>
+            </div>
+
+            <div class="sim-metrics-grid">
+              <div class="sim-stat-box">
+                <span>Projected Global Views</span>
+                <strong id="simProjViews">14.8M</strong>
+              </div>
+              <div class="sim-stat-box">
+                <span>Projected Watch Hours</span>
+                <strong id="simProjHours">42.5M hrs</strong>
+              </div>
+              <div class="sim-stat-box">
+                <span>Estimated Completion Rate</span>
+                <strong id="simProjComp">81.2%</strong>
+              </div>
+              <div class="sim-stat-box">
+                <span>Predicted Net Profit</span>
+                <strong id="simProjProfit" class="text-emerald">₹385.2M</strong>
+              </div>
+            </div>
+
+            <div class="sim-roi-meter">
+              <div class="meter-label">
+                <span>Projected Portfolio Return on Investment</span>
+                <strong id="simProjRoi" class="text-cyan">+240.8%</strong>
+              </div>
+              <div class="meter-bar">
+                <div class="fill fill-cyan" id="simRoiFill" style="width: 78%;"></div>
+              </div>
+            </div>
+
+            <div class="sim-memo">
+              <h4>Strategic Executive Memo</h4>
+              <p id="simMemoText">Based on historical clustering of Sci-Fi titles in 15 territories with matching budget tiers, this production has an 84.6% likelihood of surpassing the portfolio break-even hurdle rate within 62 days of release.</p>
+            </div>
+          </div>
+        </div>
+      </section>
+    </main>
+  </div>
+
+  <!-- TITLE DEEP-DIVE MODAL / DRAWER -->
+  <div class="modal-overlay" id="detailModal">
+    <div class="modal-card">
+      <button class="modal-close" id="modalCloseBtn" aria-label="Close modal">&times;</button>
+      
+      <div class="modal-hero" id="modalHero">
+        <div class="modal-hero-content">
+          <div class="badge-row">
+            <span class="pill" id="modalTypePill">MOVIE</span>
+            <span class="pill pill-expand" id="modalDecisionPill">EXPAND</span>
+            <span class="meta-tag" id="modalAgeRating">PG-13</span>
+          </div>
+          <h2 class="modal-title" id="modalTitle">Inception</h2>
+          <div class="modal-subtitle">
+            <span id="modalStudio">Warner Bros. Pictures</span> &bull; 
+            <span id="modalYear">2010</span> &bull; 
+            <span id="modalGenre">Sci-Fi</span> &bull; 
+            <span id="modalDuration">148 min</span>
+          </div>
+        </div>
+      </div>
+
+      <div class="modal-body">
+        <!-- Overview & Cast -->
+        <div class="modal-section">
+          <h3>Synopsis & Credits</h3>
+          <p id="modalSynopsis" class="modal-desc"></p>
+          <div class="credits-grid">
+            <div><span class="sub-label">Director:</span> <strong id="modalDirector"></strong></div>
+            <div><span class="sub-label">Starring Cast:</span> <strong id="modalCast"></strong></div>
+          </div>
+        </div>
+
+        <!-- Financial Breakdown -->
+        <div class="modal-section">
+          <h3>Streaming Economics & Capital Efficiency</h3>
+          <div class="modal-kpi-grid">
+            <div class="modal-kpi">
+              <span>Production Budget</span>
+              <strong id="modalBudget"></strong>
+            </div>
+            <div class="modal-kpi">
+              <span>Licensing Cost</span>
+              <strong id="modalLicensing"></strong>
+            </div>
+            <div class="modal-kpi">
+              <span>Marketing Spend</span>
+              <strong id="modalMarketing"></strong>
+            </div>
+            <div class="modal-kpi">
+              <span>Attributed Revenue</span>
+              <strong id="modalRevenue" class="text-cyan"></strong>
+            </div>
+            <div class="modal-kpi">
+              <span>Net Contribution Profit</span>
+              <strong id="modalProfit" class="text-emerald"></strong>
+            </div>
+            <div class="modal-kpi">
+              <span>Return on Investment</span>
+              <strong id="modalRoi" class="text-gold"></strong>
+            </div>
+          </div>
+        </div>
+
+        <!-- Audience & Engagement -->
+        <div class="modal-section">
+          <h3>Audience Reception & Viewership</h3>
+          <div class="modal-kpi-grid">
+            <div class="modal-kpi">
+              <span>Total Streaming Views</span>
+              <strong id="modalViews"></strong>
+            </div>
+            <div class="modal-kpi">
+              <span>Total Watch Hours</span>
+              <strong id="modalHours"></strong>
+            </div>
+            <div class="modal-kpi">
+              <span>Viewer Completion Rate</span>
+              <strong id="modalCompletion"></strong>
+            </div>
+            <div class="modal-kpi">
+              <span>Rewatch Rate</span>
+              <strong id="modalRewatch"></strong>
+            </div>
+          </div>
+        </div>
+
+        <!-- AI Executive Recommendation -->
+        <div class="modal-section memo-box">
+          <h3>AI Executive Strategic Directive</h3>
+          <p id="modalAiMemo"></p>
+        </div>
+      </div>
+    </div>
+  </div>
+
+  <!-- CONVERSATIONAL AI COPILOT DRAWER (CRITICAL CAPABILITY) -->
+  <div class="copilot-drawer" id="copilotDrawer">
+    <div class="copilot-header">
+      <div class="copilot-brand">
+        <div class="copilot-dot-glow"></div>
+        <div>
+          <h3>Ask CinePulse AI</h3>
+          <span>Conversational Studio CFO & Content Intelligence Copilot</span>
+        </div>
+      </div>
+      <button class="copilot-close" id="copilotCloseBtn">&times;</button>
+    </div>
+
+    <div class="copilot-body" id="copilotBody">
+      <div class="copilot-message bot">
+        <div class="avatar">✨</div>
+        <div class="bubble">
+          <p>Hello. I am your <strong>CinePulse Strategic Copilot</strong>. I have indexed viewing velocity, financial return on capital, post-finale churn vulnerability, and ad yields across your entire 50,000 title catalog.</p>
+          <p style="margin-top: 6px;">How can I assist your executive programming decisions today?</p>
+        </div>
+      </div>
+    </div>
+
+    <!-- Copilot Prompt Suggestions -->
+    <div class="copilot-chips">
+      <button class="chip-btn" onclick="askCopilot('Which titles have the highest churn risk after finale?')">🛡️ Post-Finale Churn Risks</button>
+      <button class="chip-btn" onclick="askCopilot('Compare Inception vs Interstellar side-by-side')">⚔️ Inception vs Interstellar</button>
+      <button class="chip-btn" onclick="askCopilot('What are our top performing Indian titles?')">🇮🇳 Indian Cinema ROI Leaders</button>
+      <button class="chip-btn" onclick="askCopilot('How is our ad-supported tier performing?')">💰 Ad-Tier CPM Breakdown</button>
+    </div>
+
+    <!-- Copilot Input Area -->
+    <div class="copilot-input-bar">
+      <input type="text" id="copilotInput" placeholder="Ask anything about catalog economics, churn, or greenlighting...">
+      <button id="copilotSendBtn" class="btn btn-primary">
+        <svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><line x1="22" y1="2" x2="11" y2="13"></line><polygon points="22 2 15 22 11 13 2 9 22 2"></polygon></svg>
+      </button>
+    </div>
+  </div>
+
+  <script src="copilot_engine.js"></script>
+  <script src="app.js"></script>
+</body>
+</html>

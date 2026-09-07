@@ -1,0 +1,332 @@
+{
+  "generated_at": "2026-09-07T16:40:45.138158",
+  "portfolio_kpis": {
+    "content_assets": 50000.0,
+    "total_revenue": 2556385240.9,
+    "total_content_cost": 2022305948.02,
+    "total_marketing_spend": 1273790951.89,
+    "total_watch_hours": 4110656.84,
+    "total_views": 1000000.0,
+    "portfolio_roi": -0.2244,
+    "expand_candidates": 16472.0,
+    "renew_candidates": 7370.0,
+    "monitor_candidates": 5955.0,
+    "cost_review_candidates": 19762.0,
+    "exit_candidates": 441.0
+  },
+  "strategic_initiatives": [
+    {
+      "pillar": "Franchise Monetization",
+      "priority": "HIGH",
+      "summary": "Fast-track sequel development and global spinoffs for top 10 breakout assets with >60% completion rates.",
+      "candidates": [
+        {
+          "content_id": 48212,
+          "title": "Rise of Horizon (48212)",
+          "genre": "Comedy",
+          "studio": "Nexus Motion Pictures",
+          "imdb_rating": 8.2,
+          "roi_percentage": "1047.3%",
+          "watch_hours": "203 hrs",
+          "completion_rate": "67.4%",
+          "action": "Commission Sequel / Expand Global Rights",
+          "rationale": "Exceptional 67.4% viewer completion with 1047.3% ROI demonstrates massive audience loyalty and franchise viability."
+        },
+        {
+          "content_id": 40211,
+          "title": "Paradox: Unbound (40211)",
+          "genre": "Drama",
+          "studio": "Prism Studios",
+          "imdb_rating": 7.8,
+          "roi_percentage": "966.0%",
+          "watch_hours": "230 hrs",
+          "completion_rate": "79.3%",
+          "action": "Commission Sequel / Expand Global Rights",
+          "rationale": "Exceptional 79.3% viewer completion with 966.0% ROI demonstrates massive audience loyalty and franchise viability."
+        },
+        {
+          "content_id": 804,
+          "title": "The Secret Dynasty - Defiance",
+          "genre": "Comedy",
+          "studio": "Apex Media",
+          "imdb_rating": 8.9,
+          "roi_percentage": "921.3%",
+          "watch_hours": "98 hrs",
+          "completion_rate": "63.1%",
+          "action": "Commission Sequel / Expand Global Rights",
+          "rationale": "Exceptional 63.1% viewer completion with 921.3% ROI demonstrates massive audience loyalty and franchise viability."
+        },
+        {
+          "content_id": 31118,
+          "title": "Call of Requiem - Reborn (31118)",
+          "genre": "Biography",
+          "studio": "Horizon Productions",
+          "imdb_rating": 7.8,
+          "roi_percentage": "874.1%",
+          "watch_hours": "189 hrs",
+          "completion_rate": "77.6%",
+          "action": "Commission Sequel / Expand Global Rights",
+          "rationale": "Exceptional 77.6% viewer completion with 874.1% ROI demonstrates massive audience loyalty and franchise viability."
+        },
+        {
+          "content_id": 36665,
+          "title": "Ghosts of Genesis - Rising (36665)",
+          "genre": "Sports",
+          "studio": "MGM Studios",
+          "imdb_rating": 9.0,
+          "roi_percentage": "865.3%",
+          "watch_hours": "123 hrs",
+          "completion_rate": "77.5%",
+          "action": "Commission Sequel / Expand Global Rights",
+          "rationale": "Exceptional 77.5% viewer completion with 865.3% ROI demonstrates massive audience loyalty and franchise viability."
+        },
+        {
+          "content_id": 39002,
+          "title": "Frontier: Conspiracy (39002)",
+          "genre": "Sports",
+          "studio": "Silver Entertainment 79",
+          "imdb_rating": 7.5,
+          "roi_percentage": "838.6%",
+          "watch_hours": "171 hrs",
+          "completion_rate": "80.4%",
+          "action": "Commission Sequel / Expand Global Rights",
+          "rationale": "Exceptional 80.4% viewer completion with 838.6% ROI demonstrates massive audience loyalty and franchise viability."
+        },
+        {
+          "content_id": 13249,
+          "title": "Inside Odyssey - Legacy",
+          "genre": "Family",
+          "studio": "Yash Raj Films",
+          "imdb_rating": 7.8,
+          "roi_percentage": "822.7%",
+          "watch_hours": "147 hrs",
+          "completion_rate": "72.8%",
+          "action": "Commission Sequel / Expand Global Rights",
+          "rationale": "Exceptional 72.8% viewer completion with 822.7% ROI demonstrates massive audience loyalty and franchise viability."
+        },
+        {
+          "content_id": 15642,
+          "title": "Labyrinth: Legacy (15642)",
+          "genre": "Horror",
+          "studio": "Prism Interactive",
+          "imdb_rating": 7.5,
+          "roi_percentage": "815.6%",
+          "watch_hours": "149 hrs",
+          "completion_rate": "82.8%",
+          "action": "Commission Sequel / Expand Global Rights",
+          "rationale": "Exceptional 82.8% viewer completion with 815.6% ROI demonstrates massive audience loyalty and franchise viability."
+        },
+        {
+          "content_id": 48167,
+          "title": "Thunder: Evolution (48167)",
+          "genre": "Crime",
+          "studio": "Legendary Entertainment",
+          "imdb_rating": 7.6,
+          "roi_percentage": "790.7%",
+          "watch_hours": "134 hrs",
+          "completion_rate": "78.8%",
+          "action": "Commission Sequel / Expand Global Rights",
+          "rationale": "Exceptional 78.8% viewer completion with 790.7% ROI demonstrates massive audience loyalty and franchise viability."
+        },
+        {
+          "content_id": 42320,
+          "title": "Valor: Revelation (42320)",
+          "genre": "Biography",
+          "studio": "Crown Interactive",
+          "imdb_rating": 7.7,
+          "roi_percentage": "752.3%",
+          "watch_hours": "206 hrs",
+          "completion_rate": "78.5%",
+          "action": "Commission Sequel / Expand Global Rights",
+          "rationale": "Exceptional 78.5% viewer completion with 752.3% ROI demonstrates massive audience loyalty and franchise viability."
+        }
+      ]
+    },
+    {
+      "pillar": "Cost Rationalization",
+      "priority": "CRITICAL",
+      "summary": "Initiate licensing audits on underperforming high-cost third-party acquisitions.",
+      "candidates": [
+        {
+          "content_id": 114,
+          "title": "Ozark",
+          "genre": "Crime",
+          "total_cost": "\u20b9665,129",
+          "roi_percentage": "-94.1%",
+          "completion_rate": "47.3%",
+          "action": "Renegotiate Licensing Tier / Shift to Ad-Tier",
+          "rationale": "High amortized expenditure (\u20b9665,129) with negative ROI (-94.1%) warrants immediate 25% licensing renegotiation upon renewal."
+        },
+        {
+          "content_id": 77,
+          "title": "Roma",
+          "genre": "Drama",
+          "total_cost": "\u20b9659,176",
+          "roi_percentage": "-96.5%",
+          "completion_rate": "61.2%",
+          "action": "Renegotiate Licensing Tier / Shift to Ad-Tier",
+          "rationale": "High amortized expenditure (\u20b9659,176) with negative ROI (-96.5%) warrants immediate 25% licensing renegotiation upon renewal."
+        },
+        {
+          "content_id": 39,
+          "title": "Money Heist",
+          "genre": "Crime",
+          "total_cost": "\u20b9643,811",
+          "roi_percentage": "-95.0%",
+          "completion_rate": "54.3%",
+          "action": "Renegotiate Licensing Tier / Shift to Ad-Tier",
+          "rationale": "High amortized expenditure (\u20b9643,811) with negative ROI (-95.0%) warrants immediate 25% licensing renegotiation upon renewal."
+        },
+        {
+          "content_id": 94,
+          "title": "PK",
+          "genre": "Comedy",
+          "total_cost": "\u20b9630,678",
+          "roi_percentage": "-93.6%",
+          "completion_rate": "72.1%",
+          "action": "Renegotiate Licensing Tier / Shift to Ad-Tier",
+          "rationale": "High amortized expenditure (\u20b9630,678) with negative ROI (-93.6%) warrants immediate 25% licensing renegotiation upon renewal."
+        },
+        {
+          "content_id": 19,
+          "title": "Baahubali 2: The Conclusion",
+          "genre": "Fantasy",
+          "total_cost": "\u20b9626,590",
+          "roi_percentage": "-98.1%",
+          "completion_rate": "55.2%",
+          "action": "Renegotiate Licensing Tier / Shift to Ad-Tier",
+          "rationale": "High amortized expenditure (\u20b9626,590) with negative ROI (-98.1%) warrants immediate 25% licensing renegotiation upon renewal."
+        },
+        {
+          "content_id": 74,
+          "title": "Knives Out",
+          "genre": "Comedy",
+          "total_cost": "\u20b9623,721",
+          "roi_percentage": "-84.5%",
+          "completion_rate": "75.2%",
+          "action": "Renegotiate Licensing Tier / Shift to Ad-Tier",
+          "rationale": "High amortized expenditure (\u20b9623,721) with negative ROI (-84.5%) warrants immediate 25% licensing renegotiation upon renewal."
+        },
+        {
+          "content_id": 116,
+          "title": "Lupin",
+          "genre": "Action",
+          "total_cost": "\u20b9618,161",
+          "roi_percentage": "-91.8%",
+          "completion_rate": "49.2%",
+          "action": "Renegotiate Licensing Tier / Shift to Ad-Tier",
+          "rationale": "High amortized expenditure (\u20b9618,161) with negative ROI (-91.8%) warrants immediate 25% licensing renegotiation upon renewal."
+        },
+        {
+          "content_id": 121,
+          "title": "Sacred Games",
+          "genre": "Crime",
+          "total_cost": "\u20b9615,167",
+          "roi_percentage": "-93.8%",
+          "completion_rate": "64.7%",
+          "action": "Renegotiate Licensing Tier / Shift to Ad-Tier",
+          "rationale": "High amortized expenditure (\u20b9615,167) with negative ROI (-93.8%) warrants immediate 25% licensing renegotiation upon renewal."
+        },
+        {
+          "content_id": 30,
+          "title": "Breaking Bad",
+          "genre": "Crime",
+          "total_cost": "\u20b9609,799",
+          "roi_percentage": "-97.3%",
+          "completion_rate": "53.7%",
+          "action": "Renegotiate Licensing Tier / Shift to Ad-Tier",
+          "rationale": "High amortized expenditure (\u20b9609,799) with negative ROI (-97.3%) warrants immediate 25% licensing renegotiation upon renewal."
+        },
+        {
+          "content_id": 111,
+          "title": "Euphoria",
+          "genre": "Drama",
+          "total_cost": "\u20b9600,400",
+          "roi_percentage": "-81.7%",
+          "completion_rate": "79.8%",
+          "action": "Renegotiate Licensing Tier / Shift to Ad-Tier",
+          "rationale": "High amortized expenditure (\u20b9600,400) with negative ROI (-81.7%) warrants immediate 25% licensing renegotiation upon renewal."
+        }
+      ]
+    },
+    {
+      "pillar": "Viral Growth & Hidden Gems",
+      "priority": "MEDIUM",
+      "summary": "Amplify high-retention indie and international cinema using targeted programmatic push notifications.",
+      "candidates": [
+        {
+          "content_id": 49728,
+          "title": "Shadow of Frontier - Protocol",
+          "genre": "Music",
+          "imdb_rating": 8.3,
+          "completion_rate": "87.2%",
+          "action": "Boost Paid Acquisition / Editorial Placement",
+          "rationale": "High organic stickiness and satisfaction rate with virtually zero marketing spend; ideal candidate for front-page hero carousel promotion."
+        },
+        {
+          "content_id": 5852,
+          "title": "Syndicate 3 (5852)",
+          "genre": "Sports",
+          "imdb_rating": 9.4,
+          "completion_rate": "85.0%",
+          "action": "Boost Paid Acquisition / Editorial Placement",
+          "rationale": "High organic stickiness and satisfaction rate with virtually zero marketing spend; ideal candidate for front-page hero carousel promotion."
+        },
+        {
+          "content_id": 9763,
+          "title": "Reckoning 3 (9763)",
+          "genre": "Family",
+          "imdb_rating": 7.9,
+          "completion_rate": "84.9%",
+          "action": "Boost Paid Acquisition / Editorial Placement",
+          "rationale": "High organic stickiness and satisfaction rate with virtually zero marketing spend; ideal candidate for front-page hero carousel promotion."
+        },
+        {
+          "content_id": 45035,
+          "title": "Song of Dynasty - Protocol",
+          "genre": "Fantasy",
+          "imdb_rating": 8.2,
+          "completion_rate": "84.9%",
+          "action": "Boost Paid Acquisition / Editorial Placement",
+          "rationale": "High organic stickiness and satisfaction rate with virtually zero marketing spend; ideal candidate for front-page hero carousel promotion."
+        },
+        {
+          "content_id": 32541,
+          "title": "Call of Requiem - Extraction",
+          "genre": "Comedy",
+          "imdb_rating": 8.6,
+          "completion_rate": "84.8%",
+          "action": "Boost Paid Acquisition / Editorial Placement",
+          "rationale": "High organic stickiness and satisfaction rate with virtually zero marketing spend; ideal candidate for front-page hero carousel promotion."
+        },
+        {
+          "content_id": 16276,
+          "title": "Ascendance 4 (16276)",
+          "genre": "Action",
+          "imdb_rating": 8.0,
+          "completion_rate": "84.4%",
+          "action": "Boost Paid Acquisition / Editorial Placement",
+          "rationale": "High organic stickiness and satisfaction rate with virtually zero marketing spend; ideal candidate for front-page hero carousel promotion."
+        },
+        {
+          "content_id": 17070,
+          "title": "Code Vengeance - Unbound",
+          "genre": "Western",
+          "imdb_rating": 8.0,
+          "completion_rate": "84.2%",
+          "action": "Boost Paid Acquisition / Editorial Placement",
+          "rationale": "High organic stickiness and satisfaction rate with virtually zero marketing spend; ideal candidate for front-page hero carousel promotion."
+        },
+        {
+          "content_id": 5165,
+          "title": "Legacy of Justice (5165)",
+          "genre": "Adventure",
+          "imdb_rating": 8.3,
+          "completion_rate": "84.1%",
+          "action": "Boost Paid Acquisition / Editorial Placement",
+          "rationale": "High organic stickiness and satisfaction rate with virtually zero marketing spend; ideal candidate for front-page hero carousel promotion."
+        }
+      ]
+    }
+  ]
+}
