@@ -1,4 +1,4 @@
-﻿# Byte-compiled / optimized / DLL files
+# Byte-compiled / optimized / DLL files
 __pycache__/
 *.py[cod]
 *.class
@@ -21,6 +21,8 @@ data/synthetic/*.csv
 # Temporary / scratch
 scratch/
 *.log
+.bumblebee_cache/
+**/.bumblebee_cache/
 
 # Operating System & IDE
 .DS_Store
