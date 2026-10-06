@@ -63,7 +63,7 @@ body {
   transition: background-color 0.2s ease, color 0.2s ease;
 }
 
-body.dark-theme {
+body.dark-theme, html.dark-theme, html.dark-theme body {
   --bg-base: #07090e;
   --bg-surface: #0e1322;
   --bg-card: rgba(16, 23, 38, 0.75);
@@ -95,12 +95,12 @@ body.dark-theme {
   --shadow-card: 0 8px 32px 0 rgba(0, 0, 0, 0.37);
   --shadow-glow: 0 0 25px -5px;
 
-  background-color: var(--bg-base);
-  color: var(--text-primary);
+  background-color: #07090e !important;
+  color: #f8fafc !important;
   background-image: 
     radial-gradient(at 15% 15%, rgba(139, 92, 246, 0.08) 0px, transparent 50%),
     radial-gradient(at 85% 85%, rgba(0, 210, 255, 0.06) 0px, transparent 50%),
-    radial-gradient(at 50% 50%, rgba(229, 9, 20, 0.04) 0px, transparent 60%);
+    radial-gradient(at 50% 50%, rgba(229, 9, 20, 0.04) 0px, transparent 60%) !important;
 }
 
 /* App Layout */

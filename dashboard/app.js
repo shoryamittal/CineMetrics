@@ -1026,41 +1026,30 @@ function setupThemeToggle() {
   const sbBtnDark = document.querySelector('#sbThemeDark');
   const sbBtnLight = document.querySelector('#sbThemeLight');
 
-  // Default to executive Light Theme on initial visit / upgrade
-  let savedTheme = localStorage.getItem('cinepulse_theme_v2');
-  if (!savedTheme) {
-    savedTheme = 'light';
-    localStorage.setItem('cinepulse_theme_v2', 'light');
-    localStorage.setItem('cinepulse_theme', 'light');
-  }
-
-  applyTheme(savedTheme);
-
-  // Top header buttons
-  if (btnDark) btnDark.addEventListener('click', () => applyTheme('dark'));
-  if (btnLight) btnLight.addEventListener('click', () => applyTheme('light'));
+  // Top header buttons - attach listeners FIRST
+  if (btnDark) btnDark.addEventListener('click', (e) => { e.preventDefault(); applyTheme('dark'); });
+  if (btnLight) btnLight.addEventListener('click', (e) => { e.preventDefault(); applyTheme('light'); });
 
   // Sidebar buttons
-  if (sbBtnDark) sbBtnDark.addEventListener('click', () => applyTheme('dark'));
-  if (sbBtnLight) sbBtnLight.addEventListener('click', () => applyTheme('light'));
+  if (sbBtnDark) sbBtnDark.addEventListener('click', (e) => { e.preventDefault(); applyTheme('dark'); });
+  if (sbBtnLight) sbBtnLight.addEventListener('click', (e) => { e.preventDefault(); applyTheme('light'); });
+
+  // Default to executive Light Theme on initial visit / upgrade
+  let savedTheme = 'light';
+  try {
+    savedTheme = localStorage.getItem('cinepulse_theme_v2') || localStorage.getItem('cinepulse_theme') || 'light';
+  } catch(e) {}
+
+  applyTheme(savedTheme, true);
 }
 
-function applyTheme(theme) {
+function applyTheme(theme, skipRender = false) {
   const btnDark = document.querySelector('#themeDark');
   const btnLight = document.querySelector('#themeLight');
   const sbBtnDark = document.querySelector('#sbThemeDark');
   const sbBtnLight = document.querySelector('#sbThemeLight');
 
-  if (theme === 'light') {
-    document.body.classList.remove('dark-theme');
-    document.body.classList.add('light-theme');
-    document.documentElement.classList.remove('dark-theme');
-    document.documentElement.classList.add('light-theme');
-    if (btnLight) btnLight.classList.add('active');
-    if (btnDark) btnDark.classList.remove('active');
-    if (sbBtnLight) sbBtnLight.classList.add('active');
-    if (sbBtnDark) sbBtnDark.classList.remove('active');
-  } else {
+  if (theme === 'dark') {
     document.body.classList.remove('light-theme');
     document.body.classList.add('dark-theme');
     document.documentElement.classList.remove('light-theme');
@@ -1069,11 +1058,25 @@ function applyTheme(theme) {
     if (btnLight) btnLight.classList.remove('active');
     if (sbBtnDark) sbBtnDark.classList.add('active');
     if (sbBtnLight) sbBtnLight.classList.remove('active');
+  } else {
+    document.body.classList.remove('dark-theme');
+    document.body.classList.add('light-theme');
+    document.documentElement.classList.remove('dark-theme');
+    document.documentElement.classList.add('light-theme');
+    if (btnLight) btnLight.classList.add('active');
+    if (btnDark) btnDark.classList.remove('active');
+    if (sbBtnLight) sbBtnLight.classList.add('active');
+    if (sbBtnDark) sbBtnDark.classList.remove('active');
   }
 
-  localStorage.setItem('cinepulse_theme_v2', theme);
-  localStorage.setItem('cinepulse_theme', theme);
-  renderAllViews();
+  try {
+    localStorage.setItem('cinepulse_theme_v2', theme);
+    localStorage.setItem('cinepulse_theme', theme);
+  } catch (e) {}
+
+  if (!skipRender && typeof renderAllViews === 'function') {
+    renderAllViews();
+  }
 }
 
 // ==============================================================================
@@ -1111,12 +1114,26 @@ function renderCommandCenterMetrics() {
   const netProfit = totalRev - totalCost;
   const roi = (netProfit / totalCost) * 100;
 
-  document.querySelector('#kpiTotalRevenue').textContent = formatCurrency(totalRev);
-  document.querySelector('#kpiContentCost').textContent = formatCurrency(totalCost);
-  document.querySelector('#kpiContributionProfit').textContent = formatCurrency(netProfit);
-  document.querySelector('#kpiPortfolioRoi').textContent = `+${roi.toFixed(1)}%`;
-  document.querySelector('#kpiWatchHours').textContent = '142.8M';
-  document.querySelector('#kpiDecisionReadiness').textContent = '94.6%';
+  const elRev = document.querySelector('#kpiTotalRevenue');
+  if (elRev) elRev.textContent = formatCurrency(totalRev);
+
+  const elCost = document.querySelector('#kpiContentCost');
+  if (elCost) elCost.textContent = formatCurrency(totalCost);
+
+  const elProfit = document.querySelector('#kpiContributionProfit');
+  if (elProfit) elProfit.textContent = formatCurrency(netProfit);
+
+  const elRoi = document.querySelector('#kpiPortfolioRoi');
+  if (elRoi) elRoi.textContent = `+${roi.toFixed(1)}%`;
+
+  const elChurn = document.querySelector('#kpiChurnDefense');
+  if (elChurn) elChurn.textContent = '94.2/100';
+
+  const elHours = document.querySelector('#kpiWatchHours');
+  if (elHours) elHours.textContent = '142.8M';
+
+  const elReady = document.querySelector('#kpiDecisionReadiness');
+  if (elReady) elReady.textContent = '94.6%';
 }
 
 function renderRevenueChart() {

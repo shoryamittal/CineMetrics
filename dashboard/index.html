@@ -9,23 +9,32 @@
   <link href="https://fonts.googleapis.com/css2?family=Plus+Jakarta+Sans:wght@300;400;500;600;700;800&family=JetBrains+Mono:wght@400;500;600;700&display=swap" rel="stylesheet">
   <link rel="stylesheet" href="styles.css">
   <script>
-    // Immediate executive light theme initialization (prevents flash)
+    // Immediate executive theme initialization (prevents flash)
     try {
-      var savedTheme = localStorage.getItem('cinepulse_theme_v2');
-      if (!savedTheme) {
-        savedTheme = 'light';
-        localStorage.setItem('cinepulse_theme_v2', 'light');
-        localStorage.setItem('cinepulse_theme', 'light');
-      }
+      var savedTheme = localStorage.getItem('cinepulse_theme_v2') || localStorage.getItem('cinepulse_theme') || 'light';
       if (savedTheme === 'dark') {
         document.documentElement.classList.add('dark-theme');
+        document.documentElement.classList.remove('light-theme');
       } else {
         document.documentElement.classList.add('light-theme');
+        document.documentElement.classList.remove('dark-theme');
       }
     } catch(e) {}
   </script>
 </head>
-<body class="light-theme">
+<body>
+  <script>
+    try {
+      var savedTheme = localStorage.getItem('cinepulse_theme_v2') || localStorage.getItem('cinepulse_theme') || 'light';
+      if (savedTheme === 'dark') {
+        document.body.classList.add('dark-theme');
+        document.body.classList.remove('light-theme');
+      } else {
+        document.body.classList.add('light-theme');
+        document.body.classList.remove('dark-theme');
+      }
+    } catch(e) {}
+  </script>
   <!-- Live Breaking Studio Alert Ticker Tape -->
   <div class="ticker-tape" id="tickerTape">
     <div class="ticker-badge">LIVE STUDIO ALERTS</div>
