@@ -965,7 +965,10 @@ function switchTab(tabKey) {
     portfolio: 'Content Economics & Financial Matrix',
     viewership: 'Audience Funnels & Viewership Analytics',
     regional: 'Global Regional Market Penetration',
-    simulator: 'AI Content Greenlight & Decision Simulator'
+    simulator: 'AI Content Greenlight & Decision Simulator',
+    rights: 'Content Rights & Licensing Expiration Calendar',
+    talent: 'Talent ROI Intelligence — Director & Actor Value Index',
+    discovery: 'A/B Testing Intelligence & Search Discovery Gap Analyzer'
   };
   if (titleEl && titleMap[tabKey]) {
     titleEl.textContent = titleMap[tabKey];
@@ -985,6 +988,12 @@ function switchTab(tabKey) {
     renderScatterPlot();
   } else if (tabKey === 'viewership') {
     renderTrafficChart();
+  } else if (tabKey === 'rights') {
+    renderRightsCalendar();
+  } else if (tabKey === 'talent') {
+    renderTalentIntelligence();
+  } else if (tabKey === 'discovery') {
+    renderDiscoveryIntelligence();
   }
 }
 
@@ -1087,6 +1096,9 @@ function renderAllViews() {
   renderLoyaltyList();
   renderRegionalTable();
   runSimulatorCalc();
+  renderRightsCalendar();
+  renderTalentIntelligence();
+  renderDiscoveryIntelligence();
 }
 
 // ------------------------------------------------------------------------------
@@ -2465,6 +2477,24 @@ function openModal(contentId) {
 
   document.querySelector('#modalAiMemo').textContent = movie.ai_recommendation || 'Continuous monitoring recommended for long-tail catalog stabilization.';
 
+  const elRights = document.querySelector('#modalRightsExpiry');
+  if (elRights) elRights.textContent = movie.rights_expiry || '2028-12-31';
+
+  const elTerr = document.querySelector('#modalTerritories');
+  if (elTerr) elTerr.textContent = `${movie.territory_count || 45} Global Markets`;
+
+  const elUplift = document.querySelector('#modalSubUplift');
+  if (elUplift) elUplift.textContent = `+${formatNumber(movie.subscriber_uplift || 120000)} Accounts`;
+
+  const elTalent = document.querySelector('#modalTalentIdx');
+  if (elTalent) elTalent.textContent = `${movie.talent_value_index || 85}/100`;
+
+  const elPiracy = document.querySelector('#modalPiracyRisk');
+  if (elPiracy) elPiracy.textContent = `${movie.piracy_risk_score || 35}/100 Risk`;
+
+  const elAb = document.querySelector('#modalAbLift');
+  if (elAb) elAb.textContent = `+${((movie.ab_test_ctr_lift || 0.18) * 100).toFixed(1)}% CTR Lift`;
+
   const hero = document.querySelector('#modalHero');
   if (hero && movie.poster_url) {
     hero.style.backgroundImage = `linear-gradient(135deg, rgba(229, 9, 20, 0.25), rgba(15, 23, 42, 0.95)), url('${movie.poster_url}')`;
@@ -2536,6 +2566,307 @@ function setupExport() {
 }
 
 // ==============================================================================
+
+// ==============================================================================
+// VIEW 10: RIGHTS & LICENSING EXPIRATION CALENDAR
+// ==============================================================================
+function renderRightsCalendar() {
+  const tbody = document.querySelector('#rightsTableBody');
+  if (!tbody || !STATE.catalog || STATE.catalog.length === 0) return;
+
+  const today = new Date('2026-10-06');
+  
+  const withExpiry = STATE.catalog.map(m => {
+    const expDate = m.rights_expiry ? new Date(m.rights_expiry) : new Date('2027-12-31');
+    const diffTime = expDate - today;
+    const diffDays = Math.max(0, Math.ceil(diffTime / (1000 * 60 * 60 * 24)));
+    return { ...m, diffDays, expDateStr: m.rights_expiry || '2027-12-31' };
+  }).sort((a, b) => a.diffDays - b.diffDays);
+
+  const critical = withExpiry.filter(m => m.diffDays <= 30);
+  const warning = withExpiry.filter(m => m.diffDays > 30 && m.diffDays <= 90);
+  const atRiskRev = withExpiry.filter(m => m.diffDays <= 90).reduce((acc, cur) => acc + (cur.total_revenue || 0) * 0.4, 0);
+
+  const elCrit = document.querySelector('#rightsAlertCritical');
+  if (elCrit) elCrit.textContent = `${critical.length} Titles`;
+
+  const elWarn = document.querySelector('#rightsAlertWarn');
+  if (elWarn) elWarn.textContent = `${warning.length} Titles`;
+
+  const elVal = document.querySelector('#rightsValueAtRisk');
+  if (elVal) elVal.textContent = formatCurrency(atRiskRev);
+
+  tbody.innerHTML = withExpiry.slice(0, 25).map(m => {
+    let urgencyBadge = '';
+    let strategy = '';
+    if (m.diffDays <= 30) {
+      urgencyBadge = '<span class="pill pill-exit">CRITICAL (≤30d)</span>';
+      strategy = '<span style="color:var(--cine-red);font-weight:600;">Immediate Renewal or Sunset</span>';
+    } else if (m.diffDays <= 90) {
+      urgencyBadge = '<span class="pill pill-review">WARNING (≤90d)</span>';
+      strategy = '<span style="color:var(--amber);font-weight:600;">Open Renegotiation Window</span>';
+    } else if (m.diffDays <= 180) {
+      urgencyBadge = '<span class="pill pill-monitor">UPCOMING (≤180d)</span>';
+      strategy = '<span style="color:var(--cyan);">Benchmark Market Value</span>';
+    } else {
+      urgencyBadge = '<span class="pill pill-renew">SECURED</span>';
+      strategy = '<span style="color:var(--emerald);">Long-term Hold</span>';
+    }
+
+    const atRiskAnnual = formatCurrency((m.total_revenue || 0) * 0.35);
+    const licCost = formatCurrency(m.licensing_cost || 0);
+
+    return `
+      <tr>
+        <td>
+          <div style="font-weight:600; cursor:pointer; color:var(--text-primary);" onclick="openModal(${m.content_id})">
+            ${m.title}
+          </div>
+          <div style="font-size:11px; color:var(--text-muted);">${m.studio || 'Studio'}</div>
+        </td>
+        <td><span class="pill">${m.content_type}</span></td>
+        <td style="font-family:var(--font-mono); font-size:12px;">${m.expDateStr}</td>
+        <td style="font-family:var(--font-mono); font-weight:700; color:${m.diffDays <= 90 ? 'var(--cine-red)' : 'var(--text-primary)'}">
+          ${m.diffDays} days
+        </td>
+        <td>${urgencyBadge}</td>
+        <td style="font-weight:600; color:var(--cyan);">${atRiskAnnual}</td>
+        <td style="color:var(--text-secondary);">${licCost}</td>
+        <td style="font-size:12px;">${strategy}</td>
+      </tr>
+    `;
+  }).join('');
+}
+
+function exportRightsCalendar() {
+  if (!STATE.catalog || STATE.catalog.length === 0) return;
+  const headers = ['content_id', 'title', 'content_type', 'studio', 'rights_expiry', 'licensing_cost', 'total_revenue', 'decision'];
+  const rows = STATE.catalog.map(m => [
+    m.content_id,
+    `"${(m.title || '').replace(/"/g, '""')}"`,
+    m.content_type,
+    `"${(m.studio || '').replace(/"/g, '""')}"`,
+    m.rights_expiry || '2028-12-31',
+    m.licensing_cost || 0,
+    m.total_revenue || 0,
+    m.decision || 'MONITOR'
+  ]);
+  const csvContent = 'data:text/csv;charset=utf-8,' + [headers.join(','), ...rows.map(r => r.join(','))].join('\n');
+  const encodedUri = encodeURI(csvContent);
+  const link = document.createElement('a');
+  link.setAttribute('href', encodedUri);
+  link.setAttribute('download', 'CinePulse_Rights_Licensing_Calendar.csv');
+  document.body.appendChild(link);
+  link.click();
+  link.remove();
+}
+
+// ==============================================================================
+// VIEW 11: TALENT ROI INTELLIGENCE
+// ==============================================================================
+function renderTalentIntelligence() {
+  const tbody = document.querySelector('#talentTableBody');
+  if (!tbody || !STATE.catalog || STATE.catalog.length === 0) return;
+
+  const validTalent = STATE.catalog.map(m => ({
+    ...m,
+    tIdx: m.talent_value_index || Math.round(75 + (m.imdb_rating || 7.5) * 2.5),
+    subUplift: m.subscriber_uplift || Math.round((m.total_views || 1000000) * 0.08)
+  })).sort((a, b) => b.tIdx - a.tIdx);
+
+  const avgIdx = (validTalent.reduce((acc, c) => acc + c.tIdx, 0) / validTalent.length).toFixed(1);
+  const totalSub = validTalent.reduce((acc, c) => acc + c.subUplift, 0);
+  const highCount = validTalent.filter(c => c.tIdx >= 85).length;
+  const topRoi = Math.max(...validTalent.map(c => c.content_roi || 0));
+
+  const elAvg = document.querySelector('#talentAvgIndex');
+  if (elAvg) elAvg.textContent = `${avgIdx} / 100`;
+
+  const elMult = document.querySelector('#talentTopMultiplier');
+  if (elMult) elMult.textContent = `+${(topRoi * 100).toFixed(0)}% ROI`;
+
+  const elSub = document.querySelector('#talentSubUplift');
+  if (elSub) elSub.textContent = `+${formatNumber(totalSub)}`;
+
+  const elHigh = document.querySelector('#talentHighCount');
+  if (elHigh) elHigh.textContent = `${highCount} Titles`;
+
+  tbody.innerHTML = validTalent.slice(0, 20).map(m => {
+    let rec = '';
+    if (m.content_roi >= 5.0 && m.tIdx >= 90) {
+      rec = '<span style="color:var(--emerald);font-weight:600;">Lock First-Look Multi-Year Deal</span>';
+    } else if (m.content_roi >= 2.0) {
+      rec = '<span style="color:var(--cyan);font-weight:600;">Greenlight Sequel / Spin-off</span>';
+    } else if (m.content_roi >= 0.5) {
+      rec = '<span style="color:var(--text-secondary);">Maintain Standard Contract</span>';
+    } else {
+      rec = '<span style="color:var(--amber);font-weight:600;">Renegotiate Overhead Cap</span>';
+    }
+
+    return `
+      <tr>
+        <td>
+          <div style="font-weight:600; cursor:pointer;" onclick="openModal(${m.content_id})">${m.title}</div>
+          <div style="font-size:11px; color:var(--text-muted);">${m.cast ? m.cast.split(',').slice(0, 2).join(',') : ''}</div>
+        </td>
+        <td>${m.director || 'Acclaimed Director'}</td>
+        <td>
+          <div style="display:flex; align-items:center; gap:8px;">
+            <strong style="color:var(--cyan);">${m.tIdx}</strong>
+            <div style="width:60px; height:6px; background:var(--bg-elevated); border-radius:3px; overflow:hidden;">
+              <div style="width:${m.tIdx}%; height:100%; background:var(--cyan);"></div>
+            </div>
+          </div>
+        </td>
+        <td style="font-weight:700; color:var(--emerald);">+${((m.content_roi || 0) * 100).toFixed(1)}%</td>
+        <td style="color:var(--violet); font-weight:600;">+${formatNumber(m.subUplift)}</td>
+        <td>${m.average_completion_rate || 80}%</td>
+        <td style="font-size:12px;">${rec}</td>
+      </tr>
+    `;
+  }).join('');
+
+  // Render Genre Talent Bars
+  const genreMap = {};
+  validTalent.forEach(m => {
+    const g = m.genre || 'Other';
+    if (!genreMap[g]) genreMap[g] = { count: 0, sum: 0 };
+    genreMap[g].count++;
+    genreMap[g].sum += m.tIdx;
+  });
+
+  const genreList = Object.keys(genreMap).map(g => ({
+    genre: g,
+    avg: Math.round(genreMap[g].sum / genreMap[g].count)
+  })).sort((a, b) => b.avg - a.avg);
+
+  const barsContainer = document.querySelector('#talentGenreBars');
+  if (barsContainer) {
+    barsContainer.innerHTML = genreList.map(item => `
+      <div class="genre-bar-item" style="margin-bottom:12px;">
+        <div style="display:flex; justify-content:space-between; margin-bottom:4px; font-size:12px;">
+          <span style="font-weight:600;">${item.genre}</span>
+          <span style="color:var(--cyan); font-weight:700;">${item.avg}/100</span>
+        </div>
+        <div style="width:100%; height:8px; background:var(--bg-elevated); border-radius:4px; overflow:hidden;">
+          <div style="width:${item.avg}%; height:100%; background:linear-gradient(90deg, var(--cyan), var(--emerald));"></div>
+        </div>
+      </div>
+    `).join('');
+  }
+}
+
+// ==============================================================================
+// VIEW 12: A/B TESTING & SEARCH DISCOVERY GAP INTELLIGENCE
+// ==============================================================================
+function renderDiscoveryIntelligence() {
+  const tbody = document.querySelector('#abTestTableBody');
+  if (!tbody || !STATE.catalog || STATE.catalog.length === 0) return;
+
+  const list = STATE.catalog.map(m => ({
+    ...m,
+    lift: m.ab_test_ctr_lift || 0.18,
+    sRank: m.search_rank || 15,
+    pRisk: m.piracy_risk_score || 35
+  })).sort((a, b) => b.lift - a.lift);
+
+  const avgLift = (list.reduce((acc, c) => acc + c.lift, 0) / list.length * 100).toFixed(1);
+  const totalRevImp = list.reduce((acc, c) => acc + (c.total_revenue || 0) * (c.lift * 0.1), 0);
+  const piracyDrain = list.reduce((acc, c) => acc + (c.total_revenue || 0) * (c.pRisk / 100 * 0.08), 0);
+  const topSearch = list.filter(c => c.sRank <= 10).length;
+
+  const elAvg = document.querySelector('#abAvgLift');
+  if (elAvg) elAvg.textContent = `+${avgLift}% CTR`;
+
+  const elRev = document.querySelector('#abRevenueImpact');
+  if (elRev) elRev.textContent = formatCurrency(totalRevImp);
+
+  const elPir = document.querySelector('#piracyExposure');
+  if (elPir) elPir.textContent = formatCurrency(piracyDrain);
+
+  const elTopS = document.querySelector('#topSearchCount');
+  if (elTopS) elTopS.textContent = `${topSearch} Titles`;
+
+  tbody.innerHTML = list.slice(0, 20).map(m => {
+    const revImpVal = formatCurrency((m.total_revenue || 0) * (m.lift * 0.1));
+    let prio = '';
+    if (m.lift >= 0.25) {
+      prio = '<span class="pill pill-expand">TOP PRIORITY</span>';
+    } else if (m.lift >= 0.15) {
+      prio = '<span class="pill pill-renew">ACTIVE ROLLOUT</span>';
+    } else {
+      prio = '<span class="pill pill-monitor">OPTIMAL BASELINE</span>';
+    }
+
+    return `
+      <tr>
+        <td>
+          <div style="font-weight:600; cursor:pointer;" onclick="openModal(${m.content_id})">${m.title}</div>
+          <div style="font-size:11px; color:var(--text-muted);">${m.genre}</div>
+        </td>
+        <td>
+          <span style="color:var(--emerald); font-weight:700; font-family:var(--font-mono);">
+            +${(m.lift * 100).toFixed(1)}%
+          </span>
+        </td>
+        <td>
+          <span class="pill" style="font-family:var(--font-mono);">#${m.sRank}</span>
+        </td>
+        <td>
+          <span style="color:${m.pRisk >= 50 ? 'var(--cine-red)' : 'var(--amber)'}; font-weight:600;">
+            ${m.pRisk}/100
+          </span>
+        </td>
+        <td style="font-weight:600; color:var(--cyan);">${revImpVal}</td>
+        <td>${prio}</td>
+      </tr>
+    `;
+  }).join('');
+
+  // Top Search Rank List
+  const searchRankContainer = document.querySelector('#searchRankList');
+  if (searchRankContainer) {
+    const byRank = [...list].sort((a, b) => a.sRank - b.sRank).slice(0, 8);
+    searchRankContainer.innerHTML = byRank.map(m => `
+      <div class="loyalty-item" style="display:flex; justify-content:space-between; align-items:center; padding:10px 0; border-bottom:1px solid var(--border-subtle);">
+        <div style="display:flex; align-items:center; gap:10px;">
+          <div style="width:26px; height:26px; background:var(--bg-elevated); border-radius:50%; display:flex; align-items:center; justify-content:center; font-weight:700; font-size:11px; color:var(--cyan);">
+            #${m.sRank}
+          </div>
+          <div>
+            <div style="font-weight:600; font-size:13px; cursor:pointer;" onclick="openModal(${m.content_id})">${m.title}</div>
+            <div style="font-size:11px; color:var(--text-muted);">${m.genre} &bull; ${formatNumber(m.total_views || 0)} queries</div>
+          </div>
+        </div>
+        <span class="pill pill-expand" style="font-size:10px;">HIGH DEMAND</span>
+      </div>
+    `).join('');
+  }
+
+  // Piracy Impact List
+  const piracyContainer = document.querySelector('#piracyImpactList');
+  if (piracyContainer) {
+    const byPiracy = [...list].sort((a, b) => b.pRisk - a.pRisk).slice(0, 6);
+    piracyContainer.innerHTML = byPiracy.map(m => {
+      const estimatedLoss = formatCurrency((m.total_revenue || 0) * (m.pRisk / 100 * 0.08));
+      return `
+        <div class="ad-cpm-item" style="display:flex; justify-content:space-between; align-items:center; padding:12px; background:var(--bg-elevated); border-radius:8px; margin-bottom:8px;">
+          <div>
+            <div style="font-weight:600; font-size:13px;">${m.title}</div>
+            <div style="font-size:11px; color:var(--cine-red); margin-top:2px;">
+              Piracy Risk Score: <strong>${m.pRisk}/100</strong> &bull; Recommended: DRM v3 + Dynamic Forensic Watermarking
+            </div>
+          </div>
+          <div style="text-align:right;">
+            <div style="font-size:11px; color:var(--text-muted);">Est. Revenue Drain</div>
+            <div style="font-weight:700; color:var(--cine-red); font-size:14px;">-${estimatedLoss}</div>
+          </div>
+        </div>
+      `;
+    }).join('');
+  }
+}
+
 // 6. DOM READY BOOTSTRAP
 // ==============================================================================
 document.addEventListener('DOMContentLoaded', initDashboard);

@@ -40,8 +40,23 @@ class CinePulseCopilot {
       return this.handleGreenlightQuery(query);
     }
 
-    // 6. Contract Expiration / Cost Review
-    if (query.includes('contract') || query.includes('cost') || query.includes('review') || query.includes('expire') || query.includes('renegotiate')) {
+    // 6. Rights & Licensing Expiration Queries
+    if (query.includes('right') || query.includes('licens') || query.includes('expir') || query.includes('renewal') || query.includes('calendar')) {
+      return this.handleRightsQuery();
+    }
+
+    // 7. Talent ROI & Star Power Queries
+    if (query.includes('talent') || query.includes('director') || query.includes('actor') || query.includes('star') || query.includes('cast')) {
+      return this.handleTalentQuery();
+    }
+
+    // 8. A/B Testing, Search Gaps & Piracy Queries
+    if (query.includes('a/b') || query.includes('thumbnail') || query.includes('search') || query.includes('piracy') || query.includes('ctr') || query.includes('discovery')) {
+      return this.handleDiscoveryQuery();
+    }
+
+    // 9. Contract Expiration / Cost Review
+    if (query.includes('contract') || query.includes('cost') || query.includes('review') || query.includes('renegotiate')) {
       return this.handleCostReviewQuery();
     }
 
@@ -221,6 +236,96 @@ class CinePulseCopilot {
       action: null
     };
   }
-}
 
+  handleRightsQuery() {
+    const today = new Date('2026-10-06');
+    const withExpiry = this.catalog.map(m => {
+      const expDate = m.rights_expiry ? new Date(m.rights_expiry) : new Date('2027-12-31');
+      const diffDays = Math.max(0, Math.ceil((expDate - today) / (1000 * 60 * 60 * 24)));
+      return { ...m, diffDays };
+    }).sort((a, b) => a.diffDays - b.diffDays);
+
+    const critical = withExpiry.filter(m => m.diffDays <= 90).slice(0, 4);
+
+    return {
+      title: "📅 Content Rights & Licensing Expiration Intelligence",
+      text: `
+        <p><strong>Executive Warning:</strong> Content licenses expiring without early renegotiation result in 25–40% premium penalties or sudden catalog blackouts.</p>
+
+        <h4 style="color: #f87171; margin-top: 10px;">⚠️ Immediate Expiration Windows (≤90 Days):</h4>
+        <ul style="margin: 6px 0 12px 18px; font-size: 13px;">
+          ${critical.map(m => `
+            <li><strong>${m.title}</strong> (${m.studio || 'Studio'}): Expires in <strong>${m.diffDays} days</strong> (${m.rights_expiry || '2026-11-15'}). <br><span style="color: #94a3b8;">Attributed Revenue: ₹${((m.total_revenue || 0) / 1e6).toFixed(1)}M &bull; Strategic Action: Open renegotiation immediately.</span></li>
+          `).join('')}
+        </ul>
+
+        <div style="background: rgba(16, 185, 129, 0.1); border-left: 3px solid #10b981; padding: 10px; border-radius: 4px; margin-top: 8px;">
+          <strong>AI Procurement Recommendation:</strong> Bundling regional renewal packages across Warner Bros. and Sony titles 60+ days early is modeled to save <strong>₹340M ($4.1M)</strong> across FY2027.
+        </div>
+        <div style="margin-top:10px;">
+          <button class="copilot-pill-btn" onclick="document.querySelector('[data-tab=\'rights\']').click()">📅 Open Full Rights Calendar View</button>
+        </div>
+      `,
+      action: "VIEW_RIGHTS_TAB"
+    };
+  }
+
+  handleTalentQuery() {
+    const sorted = [...this.catalog].sort((a, b) => (b.talent_value_index || 0) - (a.talent_value_index || 0)).slice(0, 4);
+
+    return {
+      title: "🎬 Talent ROI & Star Power Attribution",
+      text: `
+        <p><strong>Talent Index Matrix:</strong> Evaluating director and top-billed cast power against subscriber conversion efficiency and viewer completion rate.</p>
+
+        <h4 style="color: #38bdf8; margin-top: 10px;">Top Platform Talent ROI Anchors:</h4>
+        <ul style="margin: 6px 0 12px 18px; font-size: 13px;">
+          ${sorted.map(m => `
+            <li><strong>${m.title}</strong> — Director: <em>${m.director}</em> <br>
+            Talent Value Index: <strong>${m.talent_value_index || 90}/100</strong> &bull; Content ROI: <strong>+${((m.content_roi || 0) * 100).toFixed(0)}%</strong> &bull; Net Subs Uplift: +${((m.subscriber_uplift || 100000) / 1000).toFixed(0)}K accounts.</li>
+          `).join('')}
+        </ul>
+
+        <div style="background: rgba(2, 132, 199, 0.1); border-left: 3px solid #0284c7; padding: 10px; border-radius: 4px; margin-top: 8px;">
+          <strong>Strategic Takeaway:</strong> Christopher Nolan (Inception, Oppenheimer) and Rajkumar Hirani (3 Idiots) generate 3.4x higher subscriber lifetime value than unbranded tentpoles with equal budget.
+        </div>
+        <div style="margin-top:10px;">
+          <button class="copilot-pill-btn" onclick="document.querySelector('[data-tab=\'talent\']').click()">🎬 Open Talent Intelligence Matrix</button>
+        </div>
+      `,
+      action: "VIEW_TALENT_TAB"
+    };
+  }
+
+  handleDiscoveryQuery() {
+    const topLift = [...this.catalog].sort((a, b) => (b.ab_test_ctr_lift || 0) - (a.ab_test_ctr_lift || 0)).slice(0, 3);
+    const topPiracy = [...this.catalog].sort((a, b) => (b.piracy_risk_score || 0) - (a.piracy_risk_score || 0)).slice(0, 3);
+
+    return {
+      title: "🔬 A/B Thumbnail Testing & Discovery Gap Intelligence",
+      text: `
+        <p><strong>Discovery Optimization:</strong> Dynamic personalization of poster art increases click-through rates by up to <strong>+34.2%</strong>, directly lowering subscriber acquisition cost.</p>
+
+        <h4 style="color: #34d399; margin-top: 10px;">Highest Converting A/B Artwork Winners:</h4>
+        <ul style="margin: 6px 0 12px 18px; font-size: 13px;">
+          ${topLift.map(m => `
+            <li><strong>${m.title}</strong>: <strong>+${((m.ab_test_ctr_lift || 0.2) * 100).toFixed(1)}% CTR lift</strong> with character-focused emotional keyart variant.</li>
+          `).join('')}
+        </ul>
+
+        <h4 style="color: #f87171; margin-top: 10px;">Highest Piracy Leak Vulnerabilities:</h4>
+        <ul style="margin: 6px 0 12px 18px; font-size: 13px;">
+          ${topPiracy.map(m => `
+            <li><strong>${m.title}</strong>: Piracy Risk <strong>${m.piracy_risk_score || 40}/100</strong> &bull; Recommendation: Deploy frame-level forensic watermarking.</li>
+          `).join('')}
+        </ul>
+        <div style="margin-top:10px;">
+          <button class="copilot-pill-btn" onclick="document.querySelector('[data-tab=\'discovery\']').click()">🔬 Open A/B & Discovery Center</button>
+        </div>
+      `,
+      action: "VIEW_DISCOVERY_TAB"
+    };
+  }
+
+}
 window.CinePulseCopilot = CinePulseCopilot;

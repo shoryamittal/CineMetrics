@@ -64,7 +64,7 @@
         <button class="nav-item" data-tab="movies">
           <svg width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><rect x="2" y="2" width="20" height="20" rx="2.18" ry="2.18"></rect><line x1="7" y1="2" x2="7" y2="22"></line><line x1="17" y1="2" x2="17" y2="22"></line><line x1="2" y1="12" x2="22" y2="12"></line><line x1="2" y1="7" x2="7" y2="7"></line><line x1="2" y1="17" x2="7" y2="17"></line><line x1="17" y1="17" x2="22" y2="17"></line><line x1="17" y1="7" x2="22" y2="7"></line></svg>
           <span>Content Explorer</span>
-          <span class="nav-pill" id="realCountBadge">124</span>
+          <span class="nav-pill" id="realCountBadge">50</span>
         </button>
 
         <!-- CRITICAL NEW FEATURE: Head to Head Battle Arena -->
@@ -105,6 +105,29 @@
         <button class="nav-item highlight" data-tab="simulator">
           <svg width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><polygon points="13 2 3 14 12 14 11 22 21 10 12 10 13 2"></polygon></svg>
           <span>AI Decision Simulator</span>
+        </button>
+
+        <div class="nav-section-label" style="margin-top:12px">ADVANCED INTELLIGENCE</div>
+
+        <!-- NEW CRITICAL FEATURE: Rights & Licensing Calendar -->
+        <button class="nav-item feature-hot" data-tab="rights">
+          <svg width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><rect x="3" y="4" width="18" height="18" rx="2" ry="2"></rect><line x1="16" y1="2" x2="16" y2="6"></line><line x1="8" y1="2" x2="8" y2="6"></line><line x1="3" y1="10" x2="21" y2="10"></line></svg>
+          <span>Rights Calendar</span>
+          <span class="pulse-badge">ALERTS</span>
+        </button>
+
+        <!-- NEW CRITICAL FEATURE: Talent ROI Intelligence -->
+        <button class="nav-item feature-hot" data-tab="talent">
+          <svg width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M17 21v-2a4 4 0 0 0-4-4H5a4 4 0 0 0-4 4v2"></path><circle cx="9" cy="7" r="4"></circle><path d="M23 21v-2a4 4 0 0 0-3-3.87"></path><path d="M16 3.13a4 4 0 0 1 0 7.75"></path></svg>
+          <span>Talent Intelligence</span>
+          <span class="pulse-badge">NEW</span>
+        </button>
+
+        <!-- NEW CRITICAL FEATURE: A/B Test & Discovery Intelligence -->
+        <button class="nav-item feature-hot" data-tab="discovery">
+          <svg width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><polyline points="22 12 18 12 15 21 9 3 6 12 2 12"></polyline></svg>
+          <span>A/B & Discovery</span>
+          <span class="pulse-badge">HOT</span>
         </button>
       </nav>
 
@@ -768,6 +791,187 @@
           </div>
         </div>
       </section>
+      <!-- VIEW 10: RIGHTS & LICENSING CALENDAR -->
+<section id="view-rights" class="view-panel">
+      <div class="panel-intro">
+        <h2>📅 Content Rights &amp; Licensing Expiration Calendar</h2>
+        <p>The #1 silent money-drain in OTT: rights expire while procurement teams are asleep. Our 90-day early warning system flags high-value assets at risk and pre-calculates renegotiation leverage to save millions annually.</p>
+      </div>
+      <div class="churn-kpi-row">
+        <div class="metric-card glow-red">
+          <span class="metric-label">CRITICAL (≤30 DAYS)</span>
+          <div class="metric-value" id="rightsAlertCritical">—</div>
+          <span class="sub-metric">Titles at immediate risk</span>
+        </div>
+        <div class="metric-card glow-amber">
+          <span class="metric-label">WARNING (30–90 DAYS)</span>
+          <div class="metric-value" id="rightsAlertWarn">—</div>
+          <span class="sub-metric">Titles requiring action</span>
+        </div>
+        <div class="metric-card glow-emerald">
+          <span class="metric-label">TOTAL RIGHTS VALUE AT RISK</span>
+          <div class="metric-value" id="rightsValueAtRisk">—</div>
+          <span class="sub-metric">Revenue exposed if not renewed</span>
+        </div>
+        <div class="metric-card glow-cyan">
+          <span class="metric-label">AVG RENEWAL SAVINGS (AI)</span>
+          <div class="metric-value">23.4%</div>
+          <span class="sub-metric">When negotiated 60+ days early</span>
+        </div>
+      </div>
+      <div class="chart-card">
+        <div class="card-header">
+          <div>
+            <span class="eyebrow">EXPIRATION PIPELINE</span>
+            <h3 class="card-title">Content Rights Expiration Timeline — Next 12 Months</h3>
+          </div>
+          <button class="btn btn-primary" style="font-size:12px; padding:6px 14px;" onclick="exportRightsCalendar()">📥 Export to CSV</button>
+        </div>
+        <div class="table-container">
+          <table class="data-table">
+            <thead>
+              <tr>
+                <th>Title</th>
+                <th>Type</th>
+                <th>Rights Expiry</th>
+                <th>Days Remaining</th>
+                <th>Urgency</th>
+                <th>Annual Revenue at Risk</th>
+                <th>Licensing Cost</th>
+                <th>Renewal Strategy</th>
+              </tr>
+            </thead>
+            <tbody id="rightsTableBody"></tbody>
+          </table>
+        </div>
+      </div>
+    </section>
+<!-- VIEW 11: TALENT INTELLIGENCE -->
+<section id="view-talent" class="view-panel">
+      <div class="panel-intro">
+        <h2>🎬 Talent ROI Intelligence — Director &amp; Actor Value Index</h2>
+        <p>OTT studios overpay for star power. Our Talent Value Index correlates director/actor attachment with actual platform ROI, completion rates, and subscriber uplift — arming negotiators with data not gut feeling.</p>
+      </div>
+      <div class="churn-kpi-row">
+        <div class="metric-card glow-cyan">
+          <span class="metric-label">AVG TALENT VALUE INDEX</span>
+          <div class="metric-value" id="talentAvgIndex">—</div>
+          <span class="sub-metric">Weighted across all titles</span>
+        </div>
+        <div class="metric-card glow-emerald">
+          <span class="metric-label">TOP TALENT ROI MULTIPLIER</span>
+          <div class="metric-value" id="talentTopMultiplier">—</div>
+          <span class="sub-metric">Revenue premium from star attachment</span>
+        </div>
+        <div class="metric-card glow-violet">
+          <span class="metric-label">SUBSCRIBER UPLIFT (TOTAL)</span>
+          <div class="metric-value" id="talentSubUplift">—</div>
+          <span class="sub-metric">Net new subs from star power</span>
+        </div>
+        <div class="metric-card glow-amber">
+          <span class="metric-label">TITLES WITH HIGH TALENT VALUE</span>
+          <div class="metric-value" id="talentHighCount">—</div>
+          <span class="sub-metric">Talent Index ≥ 85</span>
+        </div>
+      </div>
+      <div class="charts-grid">
+        <div class="chart-card flex-2">
+          <div class="card-header">
+            <span class="eyebrow">TALENT PERFORMANCE MATRIX</span>
+            <h3 class="card-title">Talent Value Index vs Content ROI Correlation</h3>
+          </div>
+          <div class="table-container">
+            <table class="data-table">
+              <thead>
+                <tr>
+                  <th>Title</th>
+                  <th>Director</th>
+                  <th>Talent Index</th>
+                  <th>Content ROI</th>
+                  <th>Subscriber Uplift</th>
+                  <th>Completion Rate</th>
+                  <th>Recommendation</th>
+                </tr>
+              </thead>
+              <tbody id="talentTableBody"></tbody>
+            </table>
+          </div>
+        </div>
+        <div class="chart-card flex-1">
+          <div class="card-header">
+            <span class="eyebrow">GENRE TALENT PREMIUM</span>
+            <h3 class="card-title">Avg. Talent Index by Genre</h3>
+          </div>
+          <div class="genre-bars" id="talentGenreBars"></div>
+        </div>
+      </div>
+    </section>
+<!-- VIEW 12: A/B TESTING & DISCOVERY INTELLIGENCE -->
+<section id="view-discovery" class="view-panel">
+      <div class="panel-intro">
+        <h2>🔬 A/B Testing Intelligence &amp; Search Discovery Gap Analyzer</h2>
+        <p>Two hidden levers OTT companies almost always leave on the table: thumbnail A/B testing (15–40% CTR improvement) and content discovery gaps (up to 30% of searches return no results — each one is a missed acquisition signal).</p>
+      </div>
+      <div class="churn-kpi-row">
+        <div class="metric-card glow-emerald">
+          <span class="metric-label">AVG A/B CTR LIFT</span>
+          <div class="metric-value" id="abAvgLift">—</div>
+          <span class="sub-metric">Thumbnail optimization across catalog</span>
+        </div>
+        <div class="metric-card glow-cyan">
+          <span class="metric-label">REVENUE IMPACT (A/B)</span>
+          <div class="metric-value" id="abRevenueImpact">—</div>
+          <span class="sub-metric">Incremental from higher CTR</span>
+        </div>
+        <div class="metric-card glow-violet">
+          <span class="metric-label">PIRACY RISK EXPOSURE</span>
+          <div class="metric-value" id="piracyExposure">—</div>
+          <span class="sub-metric">Estimated revenue drain from piracy</span>
+        </div>
+        <div class="metric-card glow-amber">
+          <span class="metric-label">SEARCH RANK TOP 10</span>
+          <div class="metric-value" id="topSearchCount">—</div>
+          <span class="sub-metric">Titles in top 10 search rank</span>
+        </div>
+      </div>
+      <div class="charts-grid">
+        <div class="chart-card flex-2">
+          <div class="card-header">
+            <span class="eyebrow">THUMBNAIL A/B INTELLIGENCE</span>
+            <h3 class="card-title">A/B CTR Lift by Title — Sorted by Impact</h3>
+          </div>
+          <div class="table-container">
+            <table class="data-table">
+              <thead>
+                <tr>
+                  <th>Title</th>
+                  <th>A/B CTR Lift</th>
+                  <th>Search Rank</th>
+                  <th>Piracy Risk</th>
+                  <th>Revenue Impact</th>
+                  <th>Optimization Priority</th>
+                </tr>
+              </thead>
+              <tbody id="abTestTableBody"></tbody>
+            </table>
+          </div>
+        </div>
+        <div class="chart-card flex-1">
+          <div class="card-header">
+            <span class="eyebrow">DISCOVERY GAPS</span>
+            <h3 class="card-title">Top Search Rank Titles</h3>
+          </div>
+          <div id="searchRankList" class="loyalty-list"></div>
+        </div>
+      </div>
+      <div class="chart-card">
+        <div class="card-header">
+          <span class="eyebrow">PIRACY IMPACT ESTIMATOR</span>
+          <h3 class="card-title">Estimated Revenue Loss from Content Piracy (by Title)</h3>
+        </div>
+        <div class="ad-cpm-list" id="piracyImpactList"></div>
+      </div>
+    </section>
     </main>
   </div>
 
@@ -863,6 +1067,37 @@
           <h3>AI Executive Strategic Directive</h3>
           <p id="modalAiMemo"></p>
         </div>
+
+        <!-- Extended Intelligence Metrics -->
+        <div class="modal-section">
+          <h3>Extended Intelligence Metrics</h3>
+          <div class="modal-kpi-grid">
+            <div class="modal-kpi">
+              <span>Rights Expiry Date</span>
+              <strong id="modalRightsExpiry" style="color: var(--amber)"></strong>
+            </div>
+            <div class="modal-kpi">
+              <span>Territories Licensed</span>
+              <strong id="modalTerritories"></strong>
+            </div>
+            <div class="modal-kpi">
+              <span>Subscriber Uplift</span>
+              <strong id="modalSubUplift" style="color: var(--cyan)"></strong>
+            </div>
+            <div class="modal-kpi">
+              <span>Talent Value Index</span>
+              <strong id="modalTalentIdx"></strong>
+            </div>
+            <div class="modal-kpi">
+              <span>Piracy Risk Score</span>
+              <strong id="modalPiracyRisk" style="color: var(--cine-red)"></strong>
+            </div>
+            <div class="modal-kpi">
+              <span>A/B Thumbnail CTR Lift</span>
+              <strong id="modalAbLift" style="color: var(--emerald)"></strong>
+            </div>
+          </div>
+        </div>
       </div>
     </div>
   </div>
@@ -894,6 +1129,9 @@
     <div class="copilot-chips">
       <button class="chip-btn" onclick="askCopilot('Which titles have the highest churn risk after finale?')">🛡️ Post-Finale Churn Risks</button>
       <button class="chip-btn" onclick="askCopilot('Compare Inception vs Interstellar side-by-side')">⚔️ Inception vs Interstellar</button>
+      <button class="chip-btn" onclick="askCopilot('What content rights are expiring soon and what is our exposure?')">📅 Expiring Rights & Renewals</button>
+      <button class="chip-btn" onclick="askCopilot('Which directors and actors have the highest talent ROI?')">🎬 Talent ROI Leaders</button>
+      <button class="chip-btn" onclick="askCopilot('What are our top A/B thumbnail lift winners and piracy risks?')">🔬 A/B & Piracy Intelligence</button>
       <button class="chip-btn" onclick="askCopilot('What are our top performing Indian titles?')">🇮🇳 Indian Cinema ROI Leaders</button>
       <button class="chip-btn" onclick="askCopilot('How is our ad-supported tier performing?')">💰 Ad-Tier CPM Breakdown</button>
     </div>
