@@ -1,5 +1,5 @@
 # ==========================================================
-# ECDIP - MASTER DATA GENERATION PIPELINE
+# CPIP - MASTER DATA GENERATION PIPELINE
 # ==========================================================
 
 from pathlib import Path
@@ -250,7 +250,7 @@ def run_generator(script_name):
 def main():
 
     print("\n" + "#" * 70)
-    print("# ECDIP MASTER DATA PIPELINE")
+    print("# CPIP MASTER DATA PIPELINE")
     print("#" * 70)
 
     print(

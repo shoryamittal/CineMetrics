@@ -1,5 +1,5 @@
 -- ==========================================================
--- ECDIP - ADVANCED CONTENT KPI INTELLIGENCE
+-- CPIP - ADVANCED CONTENT KPI INTELLIGENCE
 -- ==========================================================
 
 DROP VIEW IF EXISTS vw_content_kpis CASCADE;

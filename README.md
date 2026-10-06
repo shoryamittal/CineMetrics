@@ -1,5 +1,5 @@
 # 🌐 Dual-Domain Operational Analytics Framework
-### CineMetrics (Entertainment Media Intelligence) & EcoMetrics (Ecolab Industrial Sustainability OS)
+### [Content-Portfolio-Intelligence-Platform_CPIP_](https://github.com/shoryamittal/Content-Portfolio-Intelligence-Platform_CPIP_) (CPIP) & EcoMetrics (Ecolab Industrial Sustainability OS)
 
 <div align="center">
 
@@ -13,7 +13,7 @@
 
 **An enterprise showpiece architecture uniting high-frequency industrial telemetry with media portfolio intelligence.**
 
-[Streamlit Dual-Domain App (`app.py`)](http://localhost:8501) | [CinePulse Executive SPA (`dashboard/`)](http://localhost:8080) | [GitHub Repository](https://github.com/shoryamittal/CineMetrics)
+[Streamlit Dual-Domain App (`app.py`)](http://localhost:8501) | [CinePulse Executive SPA (`dashboard/`)](http://localhost:8080) | [GitHub Repository](https://github.com/shoryamittal/Content-Portfolio-Intelligence-Platform_CPIP_)
 
 </div>
 
@@ -140,7 +140,7 @@ Automatically emitted whenever processing completes:
 ### 1. Prerequisites
 Ensure Python 3.9+ is installed:
 ```bash
-git clone https://github.com/shoryamittal/CineMetrics.git
+git clone https://github.com/shoryamittal/Content-Portfolio-Intelligence-Platform_CPIP_.git
 cd CineMetrics
 python -m venv venv
 venv\Scripts\activate      # On Windows

@@ -1,5 +1,5 @@
 # ==============================================================================
-# ECDIP - AI EXECUTIVE DECISION ENGINE & RECOMMENDATIONS GENERATOR
+# CPIP - AI EXECUTIVE DECISION ENGINE & RECOMMENDATIONS GENERATOR
 # ==============================================================================
 """
 Generates high-level executive strategic recommendations, greenlight approvals,
@@ -20,7 +20,7 @@ BASE_DIR = Path(__file__).resolve().parent.parent
 ANALYTICS_DIR = BASE_DIR / "data" / "analytics"
 
 print("=" * 70)
-print("ECDIP - AI EXECUTIVE RECOMMENDATION ENGINE")
+print("CPIP - AI EXECUTIVE RECOMMENDATION ENGINE")
 print("=" * 70)
 
 scorecard_file = ANALYTICS_DIR / "content_performance_scorecard.csv"

@@ -1,5 +1,5 @@
 /**
- * ECDIP - CinePulse AI Studio Copilot Engine
+ * CPIP - CinePulse AI Studio Copilot Engine
  * Client-Side Generative Strategic Reasoning System for OTT Executives
  */
 

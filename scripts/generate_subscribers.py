@@ -1,5 +1,5 @@
 # ==========================================================
-# ECDIP - Subscriber Dimension Generator
+# CPIP - Subscriber Dimension Generator
 # ==========================================================
 
 from pathlib import Path
@@ -37,7 +37,7 @@ plan = pd.read_csv(
 # ----------------------------------------------------------
 
 print("=" * 70)
-print("ECDIP - SUBSCRIBER DIMENSION GENERATOR")
+print("CPIP - SUBSCRIBER DIMENSION GENERATOR")
 print("=" * 70)
 
 subscriber_ids = np.arange(

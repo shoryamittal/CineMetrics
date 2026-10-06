@@ -3,7 +3,7 @@ import csv
 import psycopg2
 
 # ==========================================================
-# ECDIP - LOAD ONLY FACT_REVENUE
+# CPIP - LOAD ONLY FACT_REVENUE
 # ==========================================================
 
 BASE_DIR = Path(__file__).resolve().parent.parent
@@ -15,7 +15,7 @@ PORT = 1076
 USER = "postgres"
 
 print("=" * 70)
-print("ECDIP - FACT REVENUE ONLY LOADER")
+print("CPIP - FACT REVENUE ONLY LOADER")
 print("=" * 70)
 
 print(f"Database : {DB_NAME}")

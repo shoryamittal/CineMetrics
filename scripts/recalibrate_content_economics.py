@@ -3,7 +3,7 @@ import pandas as pd
 import numpy as np
 
 # ==========================================================
-# ECDIP - SAFE CONTENT ECONOMICS RECALIBRATION
+# CPIP - SAFE CONTENT ECONOMICS RECALIBRATION
 # ==========================================================
 
 SEED = 42
@@ -17,7 +17,7 @@ BACKUP_FILE = DATA_DIR / "dim_content_before_economics_fix.csv"
 OUTPUT_FILE = DATA_DIR / "dim_content.csv"
 
 print("=" * 70)
-print("ECDIP - CONTENT ECONOMICS RECALIBRATION")
+print("CPIP - CONTENT ECONOMICS RECALIBRATION")
 print("=" * 70)
 
 # ----------------------------------------------------------

@@ -1,5 +1,5 @@
 # ==============================================================================
-# ECDIP - REAL MOVIES & TV SERIES MASTER CATALOG
+# CPIP - REAL MOVIES & TV SERIES MASTER CATALOG
 # ==============================================================================
 """
 Master curated catalog of iconic world cinema, blockbuster franchises,

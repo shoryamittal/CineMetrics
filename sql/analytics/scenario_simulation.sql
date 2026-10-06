@@ -1,5 +1,5 @@
 -- ==========================================================
--- ECDIP - SCENARIO / WHAT-IF SIMULATION ENGINE
+-- CPIP - SCENARIO / WHAT-IF SIMULATION ENGINE
 -- ==========================================================
 --
 -- Purpose:

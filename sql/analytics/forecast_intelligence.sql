@@ -1,5 +1,5 @@
 -- ==========================================================
--- ECDIP - FORECAST INTELLIGENCE LAYER
+-- CPIP - FORECAST INTELLIGENCE LAYER
 -- ==========================================================
 --
 -- Converts raw forecast rows into business-ready signals.

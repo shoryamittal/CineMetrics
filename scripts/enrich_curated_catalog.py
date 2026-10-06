@@ -1,5 +1,5 @@
 # ==============================================================================
-# ECDIP - ADVANCED ENRICHMENT WITH CHURN DEFENSE, RADAR & AD-TIER METRICS
+# CPIP - ADVANCED ENRICHMENT WITH CHURN DEFENSE, RADAR & AD-TIER METRICS
 # ==============================================================================
 
 import json

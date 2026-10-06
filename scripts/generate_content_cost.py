@@ -1,5 +1,5 @@
 # ==========================================================
-# ECDIP - Content Cost Intelligence Generator
+# CPIP - Content Cost Intelligence Generator
 # ==========================================================
 
 from pathlib import Path
@@ -23,7 +23,7 @@ DATA_DIR = BASE_DIR / "data" / "synthetic"
 OUTPUT_FILE = DATA_DIR / "fact_content_cost.csv"
 
 print("=" * 70)
-print("ECDIP - CONTENT COST INTELLIGENCE GENERATOR")
+print("CPIP - CONTENT COST INTELLIGENCE GENERATOR")
 print("=" * 70)
 
 # ----------------------------------------------------------

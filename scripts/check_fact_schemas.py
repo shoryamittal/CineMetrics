@@ -8,10 +8,10 @@ import psycopg2
 BASE_DIR = Path(__file__).resolve().parent.parent
 DATA_DIR = BASE_DIR / "data" / "synthetic"
 
-DB_HOST = os.getenv("ECDIP_DB_HOST", "localhost")
-DB_PORT = int(os.getenv("ECDIP_DB_PORT", "1076"))
-DB_NAME = os.getenv("ECDIP_DB_NAME", "cpip")
-DB_USER = os.getenv("ECDIP_DB_USER", "postgres")
+DB_HOST = os.getenv("CPIP_DB_HOST", "localhost")
+DB_PORT = int(os.getenv("CPIP_DB_PORT", "1076"))
+DB_NAME = os.getenv("CPIP_DB_NAME", "cpip")
+DB_USER = os.getenv("CPIP_DB_USER", "postgres")
 
 TABLES = [
     "dim_age_rating",
@@ -182,7 +182,7 @@ def compatible(csv_type, pg_type):
     return False
 
 
-password = os.getenv("ECDIP_DB_PASSWORD")
+password = os.getenv("CPIP_DB_PASSWORD")
 
 if not password:
     import getpass
@@ -200,7 +200,7 @@ connection = psycopg2.connect(
 cursor = connection.cursor()
 
 print("=" * 90)
-print("ECDIP - FINAL CSV / POSTGRESQL SCHEMA + TYPE AUDIT")
+print("CPIP - FINAL CSV / POSTGRESQL SCHEMA + TYPE AUDIT")
 print("=" * 90)
 
 problems = []

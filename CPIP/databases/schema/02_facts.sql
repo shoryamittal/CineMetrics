@@ -1,5 +1,5 @@
 -- ==========================================================
--- ECDIP - Fact tables
+-- CPIP - Fact tables
 --
 -- This contract intentionally mirrors the CSV headers produced by
 -- scripts/generate_*.py. The loader copies only CSV columns, so generated

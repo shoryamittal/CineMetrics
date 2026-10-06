@@ -1,5 +1,5 @@
 # ==========================================================
-# ECDIP - Subscription Event Intelligence Generator
+# CPIP - Subscription Event Intelligence Generator
 # ==========================================================
 
 from pathlib import Path
@@ -23,7 +23,7 @@ OUTPUT_FILE = DATA_DIR / "fact_subscription_events.csv"
 # ----------------------------------------------------------
 
 print("=" * 70)
-print("ECDIP - SUBSCRIPTION EVENT GENERATOR")
+print("CPIP - SUBSCRIPTION EVENT GENERATOR")
 print("=" * 70)
 
 subscriber = pd.read_csv(

@@ -1,5 +1,5 @@
 # ==========================================================
-# ECDIP - Engagement Intelligence Generator
+# CPIP - Engagement Intelligence Generator
 # ==========================================================
 #
 # SOURCE:
@@ -54,7 +54,7 @@ def require_columns(df, required, name):
 # ==========================================================
 
 print("=" * 70)
-print("ECDIP - ENGAGEMENT INTELLIGENCE GENERATOR")
+print("CPIP - ENGAGEMENT INTELLIGENCE GENERATOR")
 print("=" * 70)
 
 print("\nLoading viewing events...")

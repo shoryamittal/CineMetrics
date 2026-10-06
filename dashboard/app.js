@@ -1,5 +1,5 @@
 /**
- * ECDIP - Enterprise Content Decision Intelligence Platform
+ * CPIP - Content Portfolio Intelligence Platform (CPIP)
  * High-Fidelity Streaming Executive Dashboard Application
  */
 
@@ -2558,7 +2558,7 @@ function setupExport() {
     const dataStr = "data:text/json;charset=utf-8," + encodeURIComponent(JSON.stringify(STATE.catalog, null, 2));
     const dlAnchor = document.createElement('a');
     dlAnchor.setAttribute("href", dataStr);
-    dlAnchor.setAttribute("download", "ECDIP_Executive_Content_Report.json");
+    dlAnchor.setAttribute("download", "CPIP_Executive_Content_Report.json");
     document.body.appendChild(dlAnchor);
     dlAnchor.click();
     dlAnchor.remove();

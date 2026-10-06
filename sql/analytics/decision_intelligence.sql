@@ -1,5 +1,5 @@
 -- ==========================================================
--- ECDIP - DECISION INTELLIGENCE ENGINE
+-- CPIP - DECISION INTELLIGENCE ENGINE
 -- SCHEMA-SAFE VERSION
 -- ==========================================================
 

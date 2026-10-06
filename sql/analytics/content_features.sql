@@ -1,5 +1,5 @@
 -- ==========================================================
--- ECDIP - CONTENT FEATURE ENGINEERING ENGINE
+-- CPIP - CONTENT FEATURE ENGINEERING ENGINE
 -- ==========================================================
 --
 -- Purpose:

@@ -36,7 +36,7 @@ from analytics_engine import ExecutiveAnalyticsEngine
 # STREAMLIT PAGE CONFIGURATION & STYLING
 # =============================================================================
 st.set_page_config(
-    page_title="Operational Analytics Framework | CineMetrics · EcoMetrics",
+    page_title="CPIP · Content Portfolio Intelligence Platform · EcoMetrics",
     page_icon="🌐",
     layout="wide",
     initial_sidebar_state="expanded"
@@ -182,7 +182,7 @@ domain_selection = st.sidebar.radio(
     "SELECT DOMAIN MATRIX:",
     options=[
         "EcoMetrics (Ecolab Industrial Sustainability)",
-        "CineMetrics (Entertainment Media Intelligence)"
+        "CPIP: Content Portfolio Intelligence Platform (Media Analytics)"
     ],
     index=0,
     help="Switches the underlying analytics schema and domain modeling logic in real-time."
@@ -249,7 +249,7 @@ else:
 # =============================================================================
 # TOP EXECUTIVE HEADER
 # =============================================================================
-header_title = "EcoMetrics · Industrial Facility Sustainability OS" if is_eco else "CineMetrics · Streaming Decision Intelligence OS"
+header_title = "EcoMetrics · Industrial Facility Sustainability OS" if is_eco else "CPIP · Content Portfolio Intelligence Platform"
 header_sub = "Automated Water Volume Treatment, Energy Consumption Logs, and Chemical Dosing Intelligence" if is_eco else "Content Capital Allocation, Bayesian Rating Benchmarks, and Portfolio ROI Velocity"
 
 st.markdown(f"""
@@ -682,7 +682,7 @@ with tab_report:
 st.markdown("---")
 st.markdown(
     "<div style='text-align: center; font-size: 12px; color: #94a3b8; padding: 12px 0;'>"
-    "CineMetrics · EcoMetrics Operational Analytics Framework | Enterprise Star Schema & Automated DQI Profiler"
+    "Content Portfolio Intelligence Platform (CPIP) · EcoMetrics Operational Analytics Framework | Enterprise Star Schema & Automated DQI Profiler"
     "</div>",
     unsafe_allow_html=True
 )

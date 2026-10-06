@@ -1,5 +1,5 @@
 # ==========================================================
-# ECDIP - Marketing Intelligence Generator
+# CPIP - Marketing Intelligence Generator
 # ==========================================================
 
 from pathlib import Path
@@ -23,7 +23,7 @@ OUTPUT_FILE = DATA_DIR / "fact_marketing.csv"
 # ----------------------------------------------------------
 
 print("=" * 70)
-print("ECDIP - MARKETING INTELLIGENCE GENERATOR")
+print("CPIP - MARKETING INTELLIGENCE GENERATOR")
 print("=" * 70)
 
 campaign = pd.read_csv(

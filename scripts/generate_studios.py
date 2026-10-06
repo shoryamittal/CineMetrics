@@ -1,5 +1,5 @@
 # ===========================================
-# CPIP / ECDIP - Studio Data Generator
+# CPIP / CPIP - Studio Data Generator
 # ===========================================
 
 import pandas as pd

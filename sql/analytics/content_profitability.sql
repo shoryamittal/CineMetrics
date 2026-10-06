@@ -1,5 +1,5 @@
 -- ==========================================================
--- ECDIP - Content profitability and ROI intelligence
+-- CPIP - Content profitability and ROI intelligence
 -- Aligned to the CSV-backed fact-table contract.
 -- ==========================================================
 

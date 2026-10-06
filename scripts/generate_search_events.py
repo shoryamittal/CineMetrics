@@ -13,7 +13,7 @@ OUTPUT_FILE = DATA_DIR / "fact_search_events.csv"
 TOTAL_EVENTS = 750_000
 
 print("=" * 70)
-print("ECDIP - SEARCH INTELLIGENCE GENERATOR")
+print("CPIP - SEARCH INTELLIGENCE GENERATOR")
 print("=" * 70)
 
 # ----------------------------------------------------------

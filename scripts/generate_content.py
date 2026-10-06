@@ -1,5 +1,5 @@
 # ==============================================================================
-# ECDIP - CONTENT DATA GENERATOR WITH REAL MOVIES & TV SERIES
+# CPIP - CONTENT DATA GENERATOR WITH REAL MOVIES & TV SERIES
 # ==============================================================================
 
 import pandas as pd

@@ -1,5 +1,5 @@
 # ==============================================================================
-# ECDIP - ADVANCED OTT ANALYTICS & DECISION INTELLIGENCE GENERATOR
+# CPIP - ADVANCED OTT ANALYTICS & DECISION INTELLIGENCE GENERATOR
 # ==============================================================================
 """
 Build Power BI & Executive Dashboard analytics from data warehouse CSVs.
@@ -28,7 +28,7 @@ OUTPUT_DIR.mkdir(parents=True, exist_ok=True)
 CHUNK_SIZE = 250_000
 
 print("=" * 70)
-print("ECDIP - OTT ANALYTICS & DECISION INTELLIGENCE GENERATOR")
+print("CPIP - OTT ANALYTICS & DECISION INTELLIGENCE GENERATOR")
 print("=" * 70)
 
 # Load dimensions

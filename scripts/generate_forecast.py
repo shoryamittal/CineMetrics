@@ -1,6 +1,6 @@
 """
 ======================================================================
-ECDIP - ENTERPRISE FORECAST INTELLIGENCE GENERATOR
+CPIP - ENTERPRISE FORECAST INTELLIGENCE GENERATOR
 ======================================================================
 
 Forecast metrics:
@@ -64,7 +64,7 @@ CHUNK_SIZE = 250_000
 
 
 print("=" * 70)
-print("ECDIP - ENTERPRISE FORECAST INTELLIGENCE GENERATOR")
+print("CPIP - ENTERPRISE FORECAST INTELLIGENCE GENERATOR")
 print("=" * 70)
 
 

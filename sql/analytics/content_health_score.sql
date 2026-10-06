@@ -1,5 +1,5 @@
 -- ==========================================================
--- ECDIP - CONTENT HEALTH SCORE ENGINE
+-- CPIP - CONTENT HEALTH SCORE ENGINE
 -- ==========================================================
 --
 -- Converts engineered business signals into an explainable

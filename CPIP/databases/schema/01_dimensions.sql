@@ -1,5 +1,5 @@
 -- ==========================================================
--- Enterprise Content Decision Intelligence Platform (ECDIP)
+-- Content Portfolio Intelligence Platform (CPIP)
 -- Dimension Tables
 -- ==========================================================
 
