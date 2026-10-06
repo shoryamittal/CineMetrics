@@ -61,11 +61,24 @@ class RobustServer(ThreadingHTTPServer):
     daemon_threads = True
 
 if __name__ == '__main__':
-    port = int(sys.argv[1]) if len(sys.argv) > 1 else PORT
-    print(f"[CPIP] Initializing robust dashboard server on port {port}...")
+    requested_port = int(sys.argv[1]) if len(sys.argv) > 1 else PORT
+    print(f"[CPIP] Initializing robust dashboard server. Target port: {requested_port}...")
     print(f"[CPIP] Serving directory: {DASHBOARD_DIR}")
-    server = RobustServer(('0.0.0.0', port), DashboardHandler)
-    print(f"[CPIP] Flagship server active at http://localhost:{port}/")
+
+    server = None
+    active_port = requested_port
+    for p in [requested_port, 8081, 8082, 8088]:
+        try:
+            server = RobustServer(('0.0.0.0', p), DashboardHandler)
+            active_port = p
+            break
+        except OSError:
+            continue
+
+    if server is None:
+        sys.exit(f"[CPIP] Error: Could not bind to any candidate port starting from {requested_port}")
+
+    print(f"[CPIP] Flagship server active at http://localhost:{active_port}/")
     try:
         server.serve_forever()
     except KeyboardInterrupt:

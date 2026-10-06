@@ -1,0 +1,250 @@
+/* ==============================================================================
+   CPIP & EcoMetrics — Streamlit Custom Styling System
+   Adheres to Paldom/streamlit-custom-style Architecture (Keyed CSS Layer 3)
+   ============================================================================== */
+
+@import url('https://fonts.googleapis.com/css2?family=Plus+Jakarta+Sans:wght@300;400;500;600;700;800&family=JetBrains+Mono:wght@400;500;600;700&display=swap');
+
+/* Global Font & Canvas Polish */
+html, body, [class*="css"] {
+  font-family: 'Plus Jakarta Sans', system-ui, -apple-system, sans-serif !important;
+}
+
+code, pre, [data-testid="stCode"] {
+  font-family: 'JetBrains Mono', monospace !important;
+}
+
+/* ==============================================================================
+   KEYED CONTAINER VARIANTS (.st-key-*)
+   ============================================================================== */
+
+/* 1. Hero Header Banner */
+.st-key-hero_header > div {
+  background: linear-gradient(135deg, rgba(14, 19, 34, 0.95) 0%, rgba(22, 30, 51, 0.85) 100%) !important;
+  border: 1px solid rgba(0, 210, 255, 0.25) !important;
+  border-radius: 16px !important;
+  padding: 24px 28px !important;
+  margin-bottom: 24px !important;
+  box-shadow: 0 10px 30px rgba(0, 0, 0, 0.4), 0 0 20px rgba(0, 210, 255, 0.08) !important;
+  backdrop-filter: blur(16px) !important;
+}
+
+/* 2. Glassmorphic Section Panels */
+.st-key-panel_card > div {
+  background: rgba(14, 19, 34, 0.75) !important;
+  border: 1px solid rgba(255, 255, 255, 0.07) !important;
+  border-radius: 14px !important;
+  padding: 20px 24px !important;
+  margin-bottom: 20px !important;
+  backdrop-filter: blur(12px) !important;
+  box-shadow: 0 8px 32px 0 rgba(0, 0, 0, 0.3) !important;
+}
+
+/* 3. DQI Pristine Banner */
+.st-key-dqi_banner > div {
+  background: linear-gradient(135deg, rgba(16, 185, 129, 0.1) 0%, rgba(14, 19, 34, 0.85) 100%) !important;
+  border: 1px solid rgba(16, 185, 129, 0.35) !important;
+  border-radius: 14px !important;
+  padding: 18px 22px !important;
+  box-shadow: 0 8px 24px rgba(16, 185, 129, 0.1) !important;
+}
+
+/* 4. Glassmorphic Metric Cards with Glowing Borders */
+.st-key-metric_cyan > div,
+.st-key-metric_violet > div,
+.st-key-metric_emerald > div,
+.st-key-metric_red > div,
+.st-key-metric_amber > div,
+.st-key-metric_blue > div {
+  background: rgba(14, 19, 34, 0.85) !important;
+  border-radius: 14px !important;
+  padding: 16px 20px !important;
+  transition: all 0.25s cubic-bezier(0.16, 1, 0.3, 1) !important;
+  backdrop-filter: blur(12px) !important;
+  box-shadow: 0 4px 20px rgba(0, 0, 0, 0.25) !important;
+}
+
+/* Cyan Glow */
+.st-key-metric_cyan > div {
+  border: 1px solid rgba(0, 210, 255, 0.25) !important;
+}
+.st-key-metric_cyan > div:hover {
+  border-color: #00d2ff !important;
+  box-shadow: 0 0 25px rgba(0, 210, 255, 0.3) !important;
+  transform: translateY(-2px) !important;
+}
+
+/* Violet Glow */
+.st-key-metric_violet > div {
+  border: 1px solid rgba(139, 92, 246, 0.25) !important;
+}
+.st-key-metric_violet > div:hover {
+  border-color: #8b5cf6 !important;
+  box-shadow: 0 0 25px rgba(139, 92, 246, 0.3) !important;
+  transform: translateY(-2px) !important;
+}
+
+/* Emerald Glow */
+.st-key-metric_emerald > div {
+  border: 1px solid rgba(16, 185, 129, 0.25) !important;
+}
+.st-key-metric_emerald > div:hover {
+  border-color: #10b981 !important;
+  box-shadow: 0 0 25px rgba(16, 185, 129, 0.3) !important;
+  transform: translateY(-2px) !important;
+}
+
+/* Red Glow */
+.st-key-metric_red > div {
+  border: 1px solid rgba(229, 9, 20, 0.25) !important;
+}
+.st-key-metric_red > div:hover {
+  border-color: #e50914 !important;
+  box-shadow: 0 0 25px rgba(229, 9, 20, 0.3) !important;
+  transform: translateY(-2px) !important;
+}
+
+/* Amber Glow */
+.st-key-metric_amber > div {
+  border: 1px solid rgba(245, 158, 11, 0.25) !important;
+}
+.st-key-metric_amber > div:hover {
+  border-color: #f59e0b !important;
+  box-shadow: 0 0 25px rgba(245, 158, 11, 0.3) !important;
+  transform: translateY(-2px) !important;
+}
+
+/* Blue Glow */
+.st-key-metric_blue > div {
+  border: 1px solid rgba(59, 130, 246, 0.25) !important;
+}
+.st-key-metric_blue > div:hover {
+  border-color: #3b82f6 !important;
+  box-shadow: 0 0 25px rgba(59, 130, 246, 0.3) !important;
+  transform: translateY(-2px) !important;
+}
+
+/* ==============================================================================
+   KEYED BUTTON VARIANTS (.st-key-* button)
+   ============================================================================== */
+
+/* Primary Glow Button */
+.st-key-btn_primary button {
+  background: linear-gradient(135deg, #00d2ff 0%, #0284c7 100%) !important;
+  color: #04101e !important;
+  font-weight: 700 !important;
+  border: none !important;
+  border-radius: 10px !important;
+  box-shadow: 0 4px 15px rgba(0, 210, 255, 0.25) !important;
+  transition: all 0.2s ease !important;
+}
+.st-key-btn_primary button:hover {
+  box-shadow: 0 6px 22px rgba(0, 210, 255, 0.45) !important;
+  transform: translateY(-1px) !important;
+}
+
+/* Success Refresh Button */
+.st-key-btn_success button,
+.st-key-btn_refresh button {
+  background: linear-gradient(135deg, #10b981 0%, #059669 100%) !important;
+  color: #ffffff !important;
+  font-weight: 700 !important;
+  border: none !important;
+  border-radius: 10px !important;
+  box-shadow: 0 4px 15px rgba(16, 185, 129, 0.25) !important;
+  transition: all 0.2s ease !important;
+}
+.st-key-btn_success button:hover,
+.st-key-btn_refresh button:hover {
+  box-shadow: 0 6px 22px rgba(16, 185, 129, 0.45) !important;
+  transform: translateY(-1px) !important;
+}
+
+/* Warning / Alert Button */
+.st-key-btn_warning button {
+  background: linear-gradient(135deg, #f59e0b 0%, #d97706 100%) !important;
+  color: #04101e !important;
+  font-weight: 700 !important;
+  border: none !important;
+  border-radius: 10px !important;
+}
+
+/* Danger Button */
+.st-key-btn_danger button {
+  background: linear-gradient(135deg, #e50914 0%, #b91c1c 100%) !important;
+  color: #ffffff !important;
+  font-weight: 700 !important;
+  border: none !important;
+  border-radius: 10px !important;
+}
+
+/* ==============================================================================
+   METRIC CARD INNER COMPONENTS
+   ============================================================================== */
+.custom-card-header {
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  margin-bottom: 8px;
+}
+
+.custom-card-label {
+  font-size: 11px;
+  font-weight: 700;
+  letter-spacing: 0.08em;
+  text-transform: uppercase;
+  color: #94a3b8;
+}
+
+.custom-card-val {
+  font-size: 26px;
+  font-weight: 800;
+  font-family: 'JetBrains Mono', monospace;
+  color: #f8fafc;
+  line-height: 1.2;
+}
+
+.custom-card-footer {
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  margin-top: 10px;
+  font-size: 11.5px;
+}
+
+.trend-badge {
+  display: inline-flex;
+  align-items: center;
+  padding: 2px 8px;
+  border-radius: 9999px;
+  font-size: 11px;
+  font-weight: 700;
+  font-family: 'JetBrains Mono', monospace;
+}
+.trend-positive {
+  background: rgba(16, 185, 129, 0.15);
+  color: #34d399;
+  border: 1px solid rgba(16, 185, 129, 0.3);
+}
+.trend-neutral {
+  background: rgba(148, 163, 184, 0.15);
+  color: #94a3b8;
+  border: 1px solid rgba(148, 163, 184, 0.25);
+}
+.trend-alert {
+  background: rgba(229, 9, 20, 0.15);
+  color: #f87171;
+  border: 1px solid rgba(229, 9, 20, 0.3);
+}
+
+.card-sparkbar {
+  height: 4px;
+  background: rgba(255, 255, 255, 0.08);
+  border-radius: 99px;
+  overflow: hidden;
+  margin-top: 8px;
+}
+.card-sparkbar-fill {
+  height: 100%;
+  border-radius: 99px;
+}

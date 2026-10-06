@@ -1,0 +1,13 @@
+<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 280 48" fill="none">
+  <defs>
+    <linearGradient id="brandGrad" x1="0%" y1="0%" x2="100%" y2="100%">
+      <stop offset="0%" stop-color="#00d2ff"/>
+      <stop offset="50%" stop-color="#8b5cf6"/>
+      <stop offset="100%" stop-color="#10b981"/>
+    </linearGradient>
+  </defs>
+  <rect x="2" y="4" width="40" height="40" rx="10" fill="url(#brandGrad)" fill-opacity="0.2" stroke="url(#brandGrad)" stroke-width="2"/>
+  <polygon points="17,14 31,24 17,34" fill="#00d2ff"/>
+  <text x="54" y="27" font-family="'Plus Jakarta Sans', sans-serif" font-weight="800" font-size="20" fill="#f8fafc" letter-spacing="-0.5">CinePulse</text>
+  <text x="55" y="40" font-family="'JetBrains Mono', monospace" font-weight="700" font-size="9" fill="#00d2ff" letter-spacing="1.5">INTELLIGENCE OS</text>
+</svg>

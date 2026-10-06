@@ -1,0 +1,23 @@
+[server]
+enableStaticServing = true
+headless = true
+port = 8501
+
+[browser]
+gatherUsageStats = false
+
+[theme]
+base = "dark"
+primaryColor = "#00d2ff"
+backgroundColor = "#07090e"
+secondaryBackgroundColor = "#0e1322"
+textColor = "#f8fafc"
+font = "sans serif"
+headingFont = "sans serif"
+codeFont = "monospace"
+borderColor = "rgba(255, 255, 255, 0.08)"
+showWidgetBorder = true
+showSidebarBorder = true
+baseRadius = "12px"
+dataframeHeaderBackgroundColor = "#161e33"
+dataframeBorderColor = "rgba(255, 255, 255, 0.08)"
