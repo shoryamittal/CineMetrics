@@ -13,7 +13,7 @@
 
 **An enterprise showpiece architecture uniting high-frequency industrial telemetry with media portfolio intelligence.**
 
-[Streamlit Dual-Domain App (`app.py`)](http://localhost:8501) | [CinePulse Executive SPA (`dashboard/`)](http://localhost:8080) | [GitHub Repository](https://github.com/shoryamittal/Content-Portfolio-Intelligence-Platform_CPIP_)
+[CinePulse Executive Flagship SPA (`dashboard/`)](http://localhost:8080) | [Companion Dual-Domain App (`app.py`)](http://localhost:8501) | [GitHub Repository](https://github.com/shoryamittal/Content-Portfolio-Intelligence-Platform_CPIP_)
 
 </div>
 
@@ -141,25 +141,25 @@ Automatically emitted whenever processing completes:
 Ensure Python 3.9+ is installed:
 ```bash
 git clone https://github.com/shoryamittal/Content-Portfolio-Intelligence-Platform_CPIP_.git
-cd CineMetrics
+cd Content-Portfolio-Intelligence-Platform_CPIP_
 python -m venv venv
 venv\Scripts\activate      # On Windows
 pip install -r requirements.txt
 ```
 
-### 2. Run the Streamlit Dual-Domain Application
-Launch the interactive Streamlit dashboard:
+### 2. Launch the Flagship Executive SPA Dashboard (Primary UI/UX)
+Launch the bespoke, 12-view executive decision intelligence platform:
+```bash
+python serve_dashboard.py 8080
+```
+Open **`http://localhost:8080`** in your browser. Experience the complete executive interface featuring glassmorphic design, Light/Dark theme switching, live ticker alerts, interactive radar comparisons, Churn Defense bridge simulator, and the multi-turn conversational AI Studio Copilot (`Ask CinePulse AI`).
+
+### 3. Optional: Run the Streamlit Dual-Domain Application
+Launch the companion Python Streamlit analytics matrix:
 ```bash
 streamlit run app.py
 ```
-Open **`http://localhost:8501`** in your browser. Use the sidebar radio button to toggle seamlessly between **EcoMetrics (Industrial Sustainability)** and **CPIP (Entertainment)**!
-
-### 3. Run the Native CinePulse SPA Dashboard
-Launch the standalone single-page application dashboard:
-```bash
-python -m http.server 8080 --directory dashboard
-```
-Open **`http://localhost:8080`** for the 12-view executive streaming platform with Light/Dark themes and conversational AI Copilot.
+Open **`http://localhost:8501`** in your browser to view the secondary cross-domain comparison view between **EcoMetrics (Industrial Sustainability)** and **CPIP (Entertainment)**.
 
 ### 4. Execute the Python Dimensional Pipeline from Terminal
 ```bash
