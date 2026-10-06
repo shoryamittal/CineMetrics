@@ -17,7 +17,7 @@ ROOT = Path(__file__).resolve().parent.parent
 
 def audit_python_files():
     print("\n[+] Auditing Python files (Syntax & AST)...")
-    py_files = list(ROOT.glob("scripts/*.py"))
+    py_files = sorted(list(ROOT.glob("scripts/*.py")) + list(ROOT.glob("*.py")))
     passed = 0
     issues = []
     for f in py_files:
