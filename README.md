@@ -1,5 +1,5 @@
 # 🌐 Dual-Domain Operational Analytics Framework
-### [Content-Portfolio-Intelligence-Platform_CPIP_](https://github.com/shoryamittal/Content-Portfolio-Intelligence-Platform_CPIP_) (CPIP) & EcoMetrics (Ecolab Industrial Sustainability OS)
+### [Content-Portfolio-Intelligence-Platform_CPIP_](https://github.com/shoryamittal/Content-Portfolio-Intelligence-Platform_CPIP_) (CPIP) & EcoMetrics (Industrial Sustainability OS)
 
 <div align="center">
 
@@ -23,9 +23,9 @@
 
 The **Dual-Domain Operational Analytics Framework** is an enterprise-grade platform engineered to demonstrate how a unified, modular data pipeline and dimensional Star Schema can seamlessly process two completely divergent operational domains via an interactive control matrix:
 
-1. **"EcoMetrics Mode" (Ecolab Industrial Sustainability Domain):**
+1. **"EcoMetrics Mode" (Industrial Sustainability Domain):**
    - Simulates continuous telemetry from global industrial facilities monitoring automated water volume treatment, energy usage logs, sensor temperature excursions, and environmental chemical dosing concentrations.
-   - Built specifically to demonstrate deep alignment with **Ecolab Global Sustainability, Nalco Water, and 3D TRASAR™** automation practices.
+   - Built to model **global clean water treatment, industrial cooling, and closed-loop chemical dosing** automation practices.
    - Quantifies **Water-to-Energy Ratios (L/kWh)**, verifies **volumetric freshwater conservation (Millions of Liters saved)**, flags **out-of-bounds sensor excursions**, and projects **annualized utility OpEx optimization ($ USD)**.
 
 2. **"CineMetrics Mode" (Entertainment Media Intelligence Domain):**
@@ -41,7 +41,7 @@ Both domains share the exact same underlying engineering discipline: **strict da
 ```
                           ┌────────────────────────────────────────┐
                           │     RAW TELEMETRY / CATALOG INGESTION   │
-                          │   ecolab_raw_factory_logs.csv / json    │
+                          │   industrial_raw_factory_logs.csv / json    │
                           └───────────────────┬────────────────────┘
                                               │
                                               ▼
@@ -96,7 +96,7 @@ Both domains share the exact same underlying engineering discipline: **strict da
 
 ### Component 2: Enterprise Star Schema Dimensional Engine (`data_modeler.py`)
 Structures incoming datasets into relational dimensional models based on active mode:
-- **Ecolab Sustainability Mode**:
+- **Industrial Sustainability Mode (EcoMetrics)**:
   - `fact_facility_operations`: `operation_id`, `facility_id`, `date_key`, `shift_id`, `water_volume_liters`, `energy_consumption_kwh`, `chemical_dosing_mg_l`, `sensor_temperature_c`, `outflow_quality_score`, `water_energy_ratio`, `is_anomaly`.
   - `dim_facilities`: Location, geographic region, industry sector (Food & Bev, Heavy Mfg, Refinery, Pharma, Data Center Cooling), target KPI benchmark.
   - `dim_time`: Date, year, quarter, month, day, hour, shift (Morning, Afternoon, Night), is_weekend.
@@ -152,7 +152,7 @@ Launch the interactive Streamlit dashboard:
 ```bash
 streamlit run app.py
 ```
-Open **`http://localhost:8501`** in your browser. Use the sidebar radio button to toggle seamlessly between **EcoMetrics (Ecolab)** and **CineMetrics (Entertainment)**!
+Open **`http://localhost:8501`** in your browser. Use the sidebar radio button to toggle seamlessly between **EcoMetrics (Industrial Sustainability)** and **CPIP (Entertainment)**!
 
 ### 3. Run the Native CinePulse SPA Dashboard
 Launch the standalone single-page application dashboard:

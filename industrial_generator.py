@@ -1,5 +1,5 @@
 """
-Industrial Facility Operations Data Generator (Ecolab Simulator)
+Industrial Facility Operations Data Generator (EcoMetrics Simulator)
 ================================================================
 Enterprise data simulator generating high-frequency industrial telemetry logs
 for automated water volume treatment, energy usage, chemical dosing concentrations,
@@ -32,7 +32,7 @@ logger = logging.getLogger("IndustrialSimulator")
 class IndustrialDataGenerator:
     """
     Simulates enterprise telemetry for global industrial facilities operating
-    Ecolab water treatment, cooling towers, and boiler automation systems.
+    industrial water treatment, cooling towers, and boiler automation systems.
     """
 
     DEFAULT_FACILITIES = [
@@ -68,7 +68,7 @@ class IndustrialDataGenerator:
 
     def generate_raw_logs(
         self,
-        output_path: str = "ecolab_raw_factory_logs.csv",
+        output_path: str = "industrial_raw_factory_logs.csv",
         num_records: int = 6000,
         start_date: str = "2026-01-01 00:00:00",
         interval_minutes: int = 15,
@@ -230,7 +230,7 @@ class IndustrialDataGenerator:
         return df
 
 
-def ensure_industrial_data(file_path: str = "ecolab_raw_factory_logs.csv", min_records: int = 5000) -> pd.DataFrame:
+def ensure_industrial_data(file_path: str = "industrial_raw_factory_logs.csv", min_records: int = 5000) -> pd.DataFrame:
     """
     Guarantees existence of the industrial raw factory logs dataset.
     Generates new synthetic data if the file is absent or has fewer than min_records.
@@ -252,7 +252,7 @@ def ensure_industrial_data(file_path: str = "ecolab_raw_factory_logs.csv", min_r
 
 
 if __name__ == "__main__":
-    out_file = "ecolab_raw_factory_logs.csv"
+    out_file = "industrial_raw_factory_logs.csv"
     if len(sys.argv) > 1:
         out_file = sys.argv[1]
     df = ensure_industrial_data(out_file, min_records=5000)

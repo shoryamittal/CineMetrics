@@ -2,7 +2,7 @@
 Advanced Analytics Engine & Automated Business Insights
 ========================================================
 Enterprise analytics layer providing dual-domain operational intelligence:
-  1. Ecolab Industrial Sustainability Analytics:
+  1. Enterprise Industrial Sustainability Analytics (EcoMetrics):
      - Water-to-Energy Efficiency Ratios (L/kWh)
      - Volumetric water savings vs. legacy industrial baselines
      - Multi-facility anomaly detection & sensor excursion alarms
@@ -155,7 +155,7 @@ class ExecutiveAnalyticsEngine:
     optimizations, and natural-language recommendations.
     """
 
-    # Industrial Utility Cost Assumptions (Ecolab Benchmarks)
+    # Industrial Utility Cost Assumptions (Clean Water & Energy Benchmarks)
     TARIFF_ENERGY_PER_KWH = 0.115        # $0.115 per kWh industrial average
     TARIFF_WATER_PER_1000L = 2.45        # $2.45 per 1,000 Liters treated / effluent
     TARIFF_CHEMICAL_PER_KG = 2.10        # $2.10 per kg specialized biocide/scale inhibitor
@@ -165,15 +165,15 @@ class ExecutiveAnalyticsEngine:
         self.profiler = DataQualityProfiler()
 
     # =========================================================================
-    # ECOLAB INDUSTRIAL SUSTAINABILITY ANALYTICS
+    # ECOMETRICS INDUSTRIAL SUSTAINABILITY ANALYTICS
     # =========================================================================
 
-    def analyze_ecolab_operations(self, fact_df: pd.DataFrame, dim_facilities: pd.DataFrame) -> Dict[str, Any]:
+    def analyze_industrial_operations(self, fact_df: pd.DataFrame, dim_facilities: pd.DataFrame) -> Dict[str, Any]:
         """
         Computes water-to-energy efficiency ratios, anomaly distributions, volumetric
         water savings, and financial operational cost savings.
         """
-        logger.info("Executing Ecolab industrial operational analytics...")
+        logger.info("Executing industrial operational analytics...")
 
         total_water_liters = float(fact_df["water_volume_liters"].sum())
         total_energy_kwh = float(fact_df["energy_consumption_kwh"].sum())
@@ -367,7 +367,7 @@ class ExecutiveAnalyticsEngine:
         md_lines = []
         md_lines.append("# 🌐 Enterprise Executive Analytical Summary")
         md_lines.append(f"> **System Architecture:** Dual-Domain Operational Analytics Framework  ")
-        md_lines.append(f"> **Active Domain Matrix:** {'EcoMetrics (Ecolab Industrial Sustainability)' if is_eco else 'CineMetrics (Entertainment Media Intelligence)'}  ")
+        md_lines.append(f"> **Active Domain Matrix:** {'EcoMetrics (Industrial Sustainability Operations)' if is_eco else 'CPIP (Content Portfolio Intelligence Platform)'}  ")
         md_lines.append(f"> **Generated Timestamp:** `{now_str}`  ")
         md_lines.append(f"> **Execution Status:** 🟢 Production Complete — Validated  \n")
         md_lines.append("---\n")
@@ -464,12 +464,12 @@ if __name__ == "__main__":
     modeler = DataModeler()
     engine = ExecutiveAnalyticsEngine()
 
-    print("\n--- RUNNING ECOLAB INDUSTRIAL ANALYTICS ---")
+    print("\n--- RUNNING ECOMETRICS INDUSTRIAL ANALYTICS ---")
     eco_model = modeler.load_and_model("ecometrics")
     eco_dqi = engine.profiler.profile_dataset(eco_model["fact_table"], "ecometrics")
-    eco_results = engine.analyze_ecolab_operations(eco_model["fact_table"], eco_model["dimension_tables"]["dim_facilities"])
+    eco_results = engine.analyze_industrial_operations(eco_model["fact_table"], eco_model["dimension_tables"]["dim_facilities"])
     engine.generate_executive_report("ecometrics", eco_dqi, eco_results, "executive_analytical_summary.md")
-    print(f"Ecolab DQI: {eco_dqi['dqi_score']}% ({eco_dqi['letter_grade']})")
+    print(f"EcoMetrics DQI: {eco_dqi['dqi_score']}% ({eco_dqi['letter_grade']})")
     print(f"Total Water Saved: {eco_results['water_saved_million_liters']} Million Liters")
     print(f"Cost Opportunity: ${eco_results['financial_savings_usd']:,.2f}")
 
@@ -479,3 +479,5 @@ if __name__ == "__main__":
     movie_results = engine.analyze_movie_performance(movie_model["fact_table"], movie_model["dimension_tables"]["dim_movies"], movie_model["dimension_tables"]["dim_genres"])
     print(f"Movie DQI: {movie_dqi['dqi_score']}% ({movie_dqi['letter_grade']})")
     print(f"Overall Catalog ROI: {movie_results['overall_roi_pct']}%")
+
+    

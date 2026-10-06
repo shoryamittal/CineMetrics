@@ -5,7 +5,7 @@ A unified, modular dimensional modeler capable of processing dual operational do
   1. Entertainment Domain ("CineMetrics Mode"):
      - Fact: fact_movie_performance
      - Dimensions: dim_movies, dim_genres, dim_creatives
-  2. Ecolab Industrial Sustainability Domain ("EcoMetrics Mode"):
+  2. Enterprise Industrial Sustainability Domain ("EcoMetrics Mode"):
      - Fact: fact_facility_operations
      - Dimensions: dim_facilities, dim_time, dim_alerts
 
@@ -77,18 +77,18 @@ class DataModeler:
         logger.info(f"[{stage}] {details} (Records affected: {affected_count:,})")
 
     # =========================================================================
-    # ECOLAB INDUSTRIAL SUSTAINABILITY DOMAIN MODELER
+    # ENTERPRISE INDUSTRIAL SUSTAINABILITY DOMAIN MODELER
     # =========================================================================
 
-    def model_ecolab_domain(self, raw_csv_path: Optional[str] = None) -> Dict[str, Any]:
+    def model_ecometrics_domain(self, raw_csv_path: Optional[str] = None) -> Dict[str, Any]:
         """
         Executes complete ingestion, cleansing checkpoints, and dimensional star
-        schema construction for Ecolab industrial factory telemetry.
+        schema construction for enterprise industrial factory telemetry.
         """
         self.audit_trail.clear()
-        self._log_audit_step("INGESTION_START", "Initiating Ecolab telemetry dimensional modeling.")
+        self._log_audit_step("INGESTION_START", "Initiating industrial telemetry dimensional modeling.")
 
-        csv_file = Path(raw_csv_path) if raw_csv_path else self.base_dir / "ecolab_raw_factory_logs.csv"
+        csv_file = Path(raw_csv_path) if raw_csv_path else self.base_dir / "industrial_raw_factory_logs.csv"
         
         # Verify source file existence
         if not csv_file.exists():
@@ -392,7 +392,7 @@ class DataModeler:
         """
         domain_normalized = str(domain).lower().strip()
         if "eco" in domain_normalized or "industrial" in domain_normalized:
-            return self.model_ecolab_domain(source_path)
+            return self.model_ecometrics_domain(source_path)
         else:
             return self.model_movie_domain(source_path)
 
@@ -400,7 +400,7 @@ class DataModeler:
 if __name__ == "__main__":
     modeler = DataModeler()
     
-    print("\n--- TEST 1: ECOLAB INDUSTRIAL DOMAIN ---")
+    print("\n--- TEST 1: ECOMETRICS INDUSTRIAL DOMAIN ---")
     eco_model = modeler.load_and_model("ecometrics")
     print("Fact Table Shape:", eco_model["fact_table"].shape)
     print("Dimensions:", list(eco_model["dimension_tables"].keys()))
@@ -411,3 +411,5 @@ if __name__ == "__main__":
     print("Fact Table Shape:", movie_model["fact_table"].shape)
     print("Dimensions:", list(movie_model["dimension_tables"].keys()))
     print("Average Content ROI:", f"+{movie_model['fact_table']['content_roi'].mean() * 100:.1f}%")
+
+    

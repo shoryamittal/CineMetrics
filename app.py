@@ -2,7 +2,7 @@
 Dual-Domain Operational Analytics Framework (Streamlit Dashboard)
 ==================================================================
 Production-grade interactive executive application bridging two domains:
-  1. "EcoMetrics Mode" (Ecolab Industrial Sustainability Domain):
+  1. "EcoMetrics Mode" (Industrial Sustainability Domain):
      - Automated water volume treatment, energy logs, sensor temperature excursions,
        and chemical dosing concentrations across global manufacturing facilities.
   2. "CineMetrics Mode" (Entertainment Media Intelligence Domain):
@@ -155,7 +155,7 @@ def get_modeled_data(domain: str):
 
     # Compute Domain Analytics
     if domain == "ecometrics":
-        analytics_results = engine.analyze_ecolab_operations(fact_table, dims["dim_facilities"])
+        analytics_results = engine.analyze_industrial_operations(fact_table, dims["dim_facilities"])
     else:
         analytics_results = engine.analyze_movie_performance(fact_table, dims["dim_movies"], dims["dim_genres"])
 
@@ -181,7 +181,7 @@ st.sidebar.markdown("### 🎛️ Architecture Control Plane")
 domain_selection = st.sidebar.radio(
     "SELECT DOMAIN MATRIX:",
     options=[
-        "EcoMetrics (Ecolab Industrial Sustainability)",
+        "EcoMetrics (Industrial Sustainability Operations)",
         "CPIP: Content Portfolio Intelligence Platform (Media Analytics)"
     ],
     index=0,
@@ -191,16 +191,16 @@ domain_selection = st.sidebar.radio(
 is_eco = "EcoMetrics" in domain_selection
 active_domain = "ecometrics" if is_eco else "cinemetrics"
 
-# Target Recruiter Enterprise Callout
+# Domain Focus Architecture
 if is_eco:
     st.sidebar.info(
-        "🏢 **Target Alignment:** Ecolab Global Sustainability, Nalco Water, & Industrial Data Architecture.\n\n"
-        "**Core Focus:** Automated closed-loop water treatment, energy optimization, and chemical dosing safety."
+        "🏢 **Domain Focus:** Global Industrial Sustainability, Clean Water & Energy Automation.\n\n"
+        "**Core Capabilities:** Automated closed-loop water treatment, energy optimization, and chemical dosing safety."
     )
 else:
     st.sidebar.info(
-        "🎬 **Target Alignment:** Media Tech & Streaming Operations (Netflix, Warner Bros, Prime Video).\n\n"
-        "**Core Focus:** Content capital allocation, Bayesian ratings, and genre ROI velocity."
+        "🎬 **Domain Focus:** Media Tech & Streaming Content Portfolio Intelligence (CPIP).\n\n"
+        "**Core Capabilities:** Content capital allocation, Bayesian ratings, and genre ROI velocity."
     )
 
 st.sidebar.markdown("---")
@@ -398,7 +398,7 @@ tab_viz, tab_integrity, tab_report = st.tabs([
 with tab_viz:
     if is_eco:
         # -------------------------------------------------------------
-        # ECOLAB VISUALIZATIONS
+        # ECOMETRICS INDUSTRIAL VISUALIZATIONS
         # -------------------------------------------------------------
         v_col1, v_col2 = st.columns([7, 5])
 
