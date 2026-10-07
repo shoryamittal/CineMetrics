@@ -1,0 +1,102 @@
+// ==============================================================================
+// ECOMETRICS — INDUSTRIAL WATER & ENERGY SUSTAINABILITY PLATFORM
+// Power BI Production DAX Measure Library (Industrial Domain)
+// ==============================================================================
+// Relational Architecture:
+//   Fact Table: fact_facility_operations
+//   Dimensions: dim_facilities, dim_time, dim_alerts
+// ==============================================================================
+
+// ------------------------------------------------------------------------------
+// 1. VOLUMETRIC & ENERGY CONSUMPTION MEASURES
+// ------------------------------------------------------------------------------
+
+Total Water Treated (Liters) = 
+SUM ( fact_facility_operations[water_volume_liters] )
+
+Total Water Treated (m³) = 
+DIVIDE ( [Total Water Treated (Liters)], 1000, 0 )
+
+Total Energy Consumed (kWh) = 
+SUM ( fact_facility_operations[energy_consumption_kwh] )
+
+Total Energy Consumed (MWh) = 
+DIVIDE ( [Total Energy Consumed (kWh)], 1000, 0 )
+
+Water to Energy Ratio (WER L/kWh) = 
+DIVIDE ( [Total Water Treated (Liters)], [Total Energy Consumed (kWh)], 0 )
+
+Facility Target Benchmark WER = 
+AVERAGE ( dim_facilities[target_kpi] )
+
+WER Benchmark Variance % = 
+DIVIDE (
+    [Water to Energy Ratio (WER L/kWh)] - [Facility Target Benchmark WER],
+    [Facility Target Benchmark WER],
+    0
+)
+
+// ------------------------------------------------------------------------------
+// 2. ENVIRONMENTAL EFFLUENT QUALITY & ANOMALY SURVEILLANCE
+// ------------------------------------------------------------------------------
+
+Average Outflow Quality Score = 
+AVERAGE ( fact_facility_operations[outflow_quality_score] )
+
+Total Operations Records = 
+COUNTROWS ( fact_facility_operations )
+
+Total Sensor Anomalies = 
+CALCULATE (
+    COUNTROWS ( fact_facility_operations ),
+    fact_facility_operations[is_anomaly] = TRUE ()
+)
+
+Anomaly Excursion Rate % = 
+DIVIDE ( [Total Sensor Anomalies], [Total Operations Records], 0 )
+
+Discharge Compliance Rate % = 
+VAR NonCompliantRows = 
+    CALCULATE (
+        COUNTROWS ( fact_facility_operations ),
+        fact_facility_operations[outflow_quality_score] < 80.0
+    )
+RETURN
+DIVIDE ( [Total Operations Records] - NonCompliantRows, [Total Operations Records], 1.0 )
+
+// ------------------------------------------------------------------------------
+// 3. SUSTAINABILITY CONSERVATION & OPEX COST OPTIMIZATION
+// ------------------------------------------------------------------------------
+
+Freshwater Conserved (Liters) = 
+[Total Water Treated (Liters)] * 0.28
+
+Freshwater Conserved (Million Liters) = 
+DIVIDE ( [Freshwater Conserved (Liters)], 1000000, 0 )
+
+Freshwater Conserved (m³) = 
+DIVIDE ( [Freshwater Conserved (Liters)], 1000, 0 )
+
+Direct Water Utility Savings USD = 
+[Freshwater Conserved (Liters)] * 0.00245
+
+Pump Energy Optimization Savings USD = 
+[Total Energy Consumed (kWh)] * 0.085 * 0.115
+
+Chemical Overdose Waste Reduction USD = 
+[Total Sensor Anomalies] * 12.5 * 2.10
+
+Total OPEX Optimization USD = 
+[Direct Water Utility Savings USD] + [Pump Energy Optimization Savings USD] + [Chemical Overdose Waste Reduction USD]
+
+// ------------------------------------------------------------------------------
+// 4. EXECUTIVE HEALTH & DATA QUALITY INDEX (DQI)
+// ------------------------------------------------------------------------------
+
+Operational Health Status = 
+SWITCH (
+    TRUE (),
+    [Average Outflow Quality Score] >= 90.0 && [Anomaly Excursion Rate %] <= 0.08, "PRISTINE (Grade A)",
+    [Average Outflow Quality Score] >= 80.0, "COMPLIANT (Grade B)",
+    "AUDIT REQUIRED (Out-of-Bounds)"
+)

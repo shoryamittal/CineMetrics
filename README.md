@@ -123,6 +123,20 @@ Automatically emitted whenever processing completes:
 
 ---
 
+## 📊 Power BI Enterprise Analytics & DAX Semantic Layer
+
+The framework features complete enterprise Power BI integration, featuring production DAX measures and signature executive visuals:
+
+- **Executive KPI Target Gauges**: Plotly / Power BI bullet dials comparing observed performance against target hurdles (Portfolio ROI hurdle 150%, WER benchmark 48.0 L/kWh, DQI SLA 95%).
+- **Financial & Volumetric Waterfall Reconciliation Bridge**: Step-by-step value reconciliation from top-line inflows down to net contribution profit and clean discharge effluent.
+- **Hierarchical Decomposition Tree**: Interactive multi-level drilldown paths (Genre ➔ Format ➔ Decision ➔ Title, or Sector ➔ Facility ➔ Shift ➔ Anomaly).
+- **Production DAX Measure Libraries**:
+  - [`powerbi/CPIP_Entertainment_Measures.dax`](powerbi/CPIP_Entertainment_Measures.dax): Capital allocation, Bayesian ratings, unit economics, churn defense, and YoY velocity.
+  - [`powerbi/EcoMetrics_Industrial_Measures.dax`](powerbi/EcoMetrics_Industrial_Measures.dax): Water treatment volume, WER efficiency, compliance rates, closed-loop savings, and OpEx optimization.
+  - [`powerbi/PowerBI_Data_Model_Guide.md`](powerbi/PowerBI_Data_Model_Guide.md): 4-page executive report blueprint and Star Schema semantic model guide.
+
+---
+
 ## 🎯 Market Gap & Business Impact Matrix
 
 | Domain & Challenge | Real-World Industry Cost | Framework Solution & ROI |

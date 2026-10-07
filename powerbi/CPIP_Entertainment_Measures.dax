@@ -1,0 +1,117 @@
+// ==============================================================================
+// CPIP — ENTERPRISE CONTENT PORTFOLIO DECISION INTELLIGENCE PLATFORM
+// Power BI Production DAX Measure Library (Entertainment Domain)
+// ==============================================================================
+// Relational Architecture:
+//   Fact Table: fact_movie_performance
+//   Dimensions: dim_movies, dim_genres, dim_creatives, dim_time
+// ==============================================================================
+
+// ------------------------------------------------------------------------------
+// 1. CORE CAPITAL ALLOCATION & REVENUE MEASURES
+// ------------------------------------------------------------------------------
+
+Total Gross Revenue = 
+SUM ( fact_movie_performance[total_revenue] )
+
+Total Production Budget = 
+SUM ( fact_movie_performance[production_budget] )
+
+Total Marketing Spend = 
+SUM ( fact_movie_performance[marketing_spend] )
+
+Total Licensing Overhead = 
+SUM ( fact_movie_performance[licensing_cost] )
+
+Total Capital Deployed = 
+[Total Production Budget] + [Total Marketing Spend] + [Total Licensing Overhead]
+
+Net Contribution Profit = 
+[Total Gross Revenue] - [Total Capital Deployed]
+
+Contribution Margin % = 
+DIVIDE ( [Net Contribution Profit], [Total Gross Revenue], 0 )
+
+Portfolio Content ROI = 
+DIVIDE ( [Net Contribution Profit], [Total Capital Deployed], 0 )
+
+SVOD Subscription Revenue = 
+[Total Gross Revenue] * 0.67
+
+AVOD Ad Tier Revenue = 
+[Total Gross Revenue] * 0.33
+
+// ------------------------------------------------------------------------------
+// 2. AUDIENCE ENGAGEMENT & STREAMING UNIT ECONOMICS
+// ------------------------------------------------------------------------------
+
+Total Watch Hours = 
+SUM ( fact_movie_performance[total_watch_hours] )
+
+Revenue per Watch Hour = 
+DIVIDE ( [Total Gross Revenue], [Total Watch Hours], 0 )
+
+Capital Cost per Watch Hour = 
+DIVIDE ( [Total Capital Deployed], [Total Watch Hours], 0 )
+
+Average Completion Rate = 
+AVERAGE ( fact_movie_performance[average_completion_rate] )
+
+Average Rewatch Rate = 
+AVERAGE ( fact_movie_performance[average_rewatch_rate] )
+
+// ------------------------------------------------------------------------------
+// 3. ADVANCED DECISION INTELLIGENCE & CHURN PREDICTORS
+// ------------------------------------------------------------------------------
+
+Platform Mean Rating (C) = 
+CALCULATE ( AVERAGE ( fact_movie_performance[imdb_rating] ), ALL ( fact_movie_performance ) )
+
+Rating Vote Threshold (m) = 
+CALCULATE ( PERCENTILE.INC ( fact_movie_performance[votes], 0.60 ), ALL ( fact_movie_performance ) )
+
+Bayesian Weighted Score = 
+VAR v = SUM ( fact_movie_performance[votes] )
+VAR R = AVERAGE ( fact_movie_performance[imdb_rating] )
+VAR m = [Rating Vote Threshold (m)]
+VAR C = [Platform Mean Rating (C)]
+RETURN
+DIVIDE ( ( v * R ) + ( m * C ), v + m, R )
+
+Average Churn Defense Score = 
+AVERAGE ( fact_movie_performance[churn_defense_score] )
+
+Average Post-Finale Vulnerability = 
+AVERAGE ( fact_movie_performance[post_finale_vulnerability] )
+
+Average Ad Yield CPM = 
+AVERAGE ( fact_movie_performance[ad_yield_cpm] )
+
+Greenlight Capital Recommendation = 
+SWITCH (
+    TRUE (),
+    [Portfolio Content ROI] >= 1.50, "EXPAND FRANCHISE (Top Decile)",
+    [Portfolio Content ROI] >= 0.50, "RENEW (Stable Return)",
+    [Portfolio Content ROI] >= 0.00, "MONITOR (Break-Even)",
+    "COST REVIEW / EXIT"
+)
+
+// ------------------------------------------------------------------------------
+// 4. TIME INTELLIGENCE & VELOCITY FORECASTING
+// ------------------------------------------------------------------------------
+
+Revenue Prior Year = 
+CALCULATE (
+    [Total Gross Revenue],
+    DATEADD ( dim_time[date], -1, YEAR )
+)
+
+YoY Revenue Growth % = 
+DIVIDE (
+    [Total Gross Revenue] - [Revenue Prior Year],
+    [Revenue Prior Year],
+    0
+)
+
+Hurdle Target Variance = 
+[Portfolio Content ROI] - 1.50

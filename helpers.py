@@ -122,3 +122,115 @@ def apply_plotly_theme(fig, is_dark: bool = True):
         )
     )
     return fig
+
+
+def create_kpi_gauge(
+    title: str,
+    value: float,
+    target: float,
+    min_val: float,
+    max_val: float,
+    prefix: str = "",
+    suffix: str = "",
+    is_dark: bool = True,
+    higher_is_better: bool = True
+):
+    """Creates a Power BI-style Executive KPI Bullet Dial Gauge."""
+    import plotly.graph_objects as go
+
+    if higher_is_better:
+        steps = [
+            {'range': [min_val, max(min_val, target * 0.75)], 'color': "rgba(229, 9, 20, 0.22)"},
+            {'range': [max(min_val, target * 0.75), target], 'color': "rgba(245, 158, 11, 0.22)"},
+            {'range': [target, max_val], 'color': "rgba(16, 185, 129, 0.22)"}
+        ]
+    else:
+        steps = [
+            {'range': [min_val, target], 'color': "rgba(16, 185, 129, 0.22)"},
+            {'range': [target, min(max_val, target * 1.25)], 'color': "rgba(245, 158, 11, 0.22)"},
+            {'range': [min(max_val, target * 1.25), max_val], 'color': "rgba(229, 9, 20, 0.22)"}
+        ]
+
+    fig = go.Figure(go.Indicator(
+        mode="gauge+number+delta",
+        value=value,
+        number={
+            'prefix': prefix,
+            'suffix': suffix,
+            'font': {'family': 'JetBrains Mono', 'size': 26, 'color': '#f8fafc'}
+        },
+        delta={
+            'reference': target,
+            'prefix': prefix,
+            'suffix': suffix,
+            'increasing': {'color': '#10b981' if higher_is_better else '#e50914'},
+            'decreasing': {'color': '#e50914' if higher_is_better else '#10b981'}
+        },
+        title={'text': title, 'font': {'family': 'Plus Jakarta Sans', 'size': 13, 'color': '#94a3b8'}},
+        gauge={
+            'axis': {
+                'range': [min_val, max_val],
+                'tickcolor': '#94a3b8',
+                'tickfont': {'family': 'JetBrains Mono', 'size': 9, 'color': '#64748b'}
+            },
+            'bar': {'color': "#00d2ff", 'thickness': 0.28},
+            'bgcolor': 'rgba(14, 19, 34, 0.6)',
+            'borderwidth': 1,
+            'bordercolor': 'rgba(255, 255, 255, 0.1)',
+            'steps': steps,
+            'threshold': {
+                'line': {'color': '#f59e0b', 'width': 3},
+                'thickness': 0.8,
+                'value': target
+            }
+        }
+    ))
+    fig.update_layout(
+        height=220,
+        margin=dict(l=25, r=25, t=35, b=20),
+        paper_bgcolor="rgba(0,0,0,0)",
+        plot_bgcolor="rgba(0,0,0,0)"
+    )
+    return fig
+
+
+def create_waterfall_chart(
+    title: str,
+    categories: list,
+    values: list,
+    measures: list,
+    prefix: str = "",
+    suffix: str = "",
+    is_dark: bool = True
+):
+    """Creates a Power BI-style Executive Waterfall Reconciliation Bridge."""
+    import plotly.graph_objects as go
+
+    text_labels = []
+    for v, m in zip(values, measures):
+        if m == "relative":
+            text_labels.append(f"{prefix}{v:+,.1f}{suffix}")
+        else:
+            text_labels.append(f"{prefix}{v:,.1f}{suffix}")
+
+    fig = go.Figure(go.Waterfall(
+        name=title,
+        orientation="v",
+        measure=measures,
+        x=categories,
+        textposition="outside",
+        text=text_labels,
+        y=values,
+        connector={"line": {"color": "rgba(255, 255, 255, 0.25)", "dash": "dot", "width": 1.5}},
+        increasing={"marker": {"color": "#10b981"}},
+        decreasing={"marker": {"color": "#e50914"}},
+        totals={"marker": {"color": "#00d2ff"}}
+    ))
+    fig.update_layout(
+        title=dict(text=title, font=dict(family="Plus Jakarta Sans", size=14, color="#f8fafc")),
+        height=380,
+        margin=dict(l=35, r=25, t=50, b=40),
+        waterfallgap=0.3
+    )
+    apply_plotly_theme(fig, is_dark=is_dark)
+    return fig

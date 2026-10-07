@@ -31,7 +31,7 @@ import streamlit as st
 # Import backend modules
 from data_modeler import DataModeler, DomainMode
 from analytics_engine import ExecutiveAnalyticsEngine
-from helpers import init_page, render_metric_card, apply_plotly_theme
+from helpers import init_page, render_metric_card, apply_plotly_theme, create_kpi_gauge, create_waterfall_chart
 
 # =============================================================================
 # STREAMLIT PAGE CONFIGURATION & PALDOM KEYED STYLING STACK
@@ -314,8 +314,9 @@ else:
 # =============================================================================
 # COMPONENT 3: INTERACTIVE VISUALIZATION SECTION
 # =============================================================================
-tab_viz, tab_integrity, tab_report = st.tabs([
+tab_viz, tab_powerbi, tab_integrity, tab_report = st.tabs([
     "📈 Operational Visualizations & Analytics",
+    "📊 Power BI Executive Studio (Dials, Waterfall & DAX)",
     "🛡️ Data Integrity Profiler & Audit Trail",
     "📋 Automated Executive Summary Report"
 ])
@@ -539,6 +540,259 @@ with tab_viz:
                 fig_yoy.update_layout(height=350)
                 apply_plotly_theme(fig_yoy, is_dark=True)
                 st.plotly_chart(fig_yoy, use_container_width=True)
+
+
+# =============================================================================
+# POWER BI EXECUTIVE ANALYTICS STUDIO & DAX MODELING HUB
+# =============================================================================
+with tab_powerbi:
+    with st.container(key="panel_card"):
+        st.markdown("#### 📊 Power BI Executive Analytics & Semantic DAX Hub")
+        st.caption("Power BI signature visuals including Target Bullet Gauges, Value Reconciliation Waterfall, Hierarchical Decomposition Tree, and Production DAX Measures.")
+
+    # -------------------------------------------------------------
+    # 1. EXECUTIVE KPI BULLET GAUGES (Power BI Dial Visuals)
+    # -------------------------------------------------------------
+    with st.container(key="panel_card"):
+        st.markdown("##### 🎯 Executive Target Gauges & Performance Thresholds")
+        g_col1, g_col2, g_col3 = st.columns(3)
+
+        if is_eco:
+            with g_col1:
+                wer_fig = create_kpi_gauge(
+                    title="WATER-ENERGY RATIO (L/kWh)",
+                    value=float(analytics["overall_wer_ratio"]),
+                    target=48.0,
+                    min_val=0.0,
+                    max_val=80.0,
+                    suffix=" L/kWh",
+                    is_dark=True,
+                    higher_is_better=True
+                )
+                st.plotly_chart(wer_fig, use_container_width=True)
+            with g_col2:
+                qual_fig = create_kpi_gauge(
+                    title="DISCHARGE EFFLUENT QUALITY",
+                    value=float(analytics["avg_outflow_quality"]),
+                    target=90.0,
+                    min_val=50.0,
+                    max_val=100.0,
+                    suffix=" / 100",
+                    is_dark=True,
+                    higher_is_better=True
+                )
+                st.plotly_chart(qual_fig, use_container_width=True)
+            with g_col3:
+                dqi_fig = create_kpi_gauge(
+                    title="DATA QUALITY INDEX (DQI SLA)",
+                    value=float(dqi["dqi_score"]),
+                    target=95.0,
+                    min_val=80.0,
+                    max_val=100.0,
+                    suffix="%",
+                    is_dark=True,
+                    higher_is_better=True
+                )
+                st.plotly_chart(dqi_fig, use_container_width=True)
+        else:
+            with g_col1:
+                roi_fig = create_kpi_gauge(
+                    title="PORTFOLIO CONTENT ROI",
+                    value=float(analytics["overall_roi_pct"]),
+                    target=150.0,
+                    min_val=0.0,
+                    max_val=400.0,
+                    prefix="+",
+                    suffix="%",
+                    is_dark=True,
+                    higher_is_better=True
+                )
+                st.plotly_chart(roi_fig, use_container_width=True)
+            with g_col2:
+                margin_pct = round((analytics["total_profit_usd"] / analytics["total_revenue_usd"]) * 100, 1) if analytics["total_revenue_usd"] else 0
+                margin_fig = create_kpi_gauge(
+                    title="NET CONTRIBUTION MARGIN",
+                    value=float(margin_pct),
+                    target=40.0,
+                    min_val=0.0,
+                    max_val=80.0,
+                    suffix="%",
+                    is_dark=True,
+                    higher_is_better=True
+                )
+                st.plotly_chart(margin_fig, use_container_width=True)
+            with g_col3:
+                dqi_fig = create_kpi_gauge(
+                    title="DATA QUALITY INDEX (DQI SLA)",
+                    value=float(dqi["dqi_score"]),
+                    target=95.0,
+                    min_val=80.0,
+                    max_val=100.0,
+                    suffix="%",
+                    is_dark=True,
+                    higher_is_better=True
+                )
+                st.plotly_chart(dqi_fig, use_container_width=True)
+
+    # -------------------------------------------------------------
+    # 2. POWER BI WATERFALL RECONCILIATION & DECOMPOSITION TREE
+    # -------------------------------------------------------------
+    w_col, t_col = st.columns([6, 6])
+
+    with w_col:
+        with st.container(key="panel_card"):
+            if is_eco:
+                st.markdown("##### 💧 Volumetric Waterfall: Intake ➔ Discharged Effluent")
+                water_cats = ["Raw Intake", "Evap Cooling", "Blowdown Loss", "Closed Recovery", "Net Effluent"]
+                raw_m3 = analytics["total_water_m3"] / 1e3
+                evap_m3 = -28.4
+                blow_m3 = -9.2
+                saved_m3 = analytics["water_saved_million_liters"]
+                water_vals = [raw_m3, evap_m3, blow_m3, saved_m3, 0]
+                water_meas = ["relative", "relative", "relative", "relative", "total"]
+
+                waterfall_fig = create_waterfall_chart(
+                    title="Facility Water Reconciliation Bridge (k m³)",
+                    categories=water_cats,
+                    values=water_vals,
+                    measures=water_meas,
+                    suffix="k m³",
+                    is_dark=True
+                )
+                st.plotly_chart(waterfall_fig, use_container_width=True)
+            else:
+                st.markdown("##### 💵 Capital Waterfall: Gross Revenue ➔ Cash Margin")
+                rev_b = analytics["total_revenue_usd"] / 1e9
+                bud_b = -(analytics["total_budget_usd"] / 1e9)
+                mkt_b = -2.51
+                lic_b = -2.01
+                fin_cats = ["Gross Revenue", "Production", "Marketing", "Licensing", "Net Profit"]
+                fin_vals = [rev_b, bud_b, mkt_b, lic_b, 0]
+                fin_meas = ["relative", "relative", "relative", "relative", "total"]
+
+                waterfall_fig = create_waterfall_chart(
+                    title="Portfolio Capital Reconciliation Bridge ($ USD)",
+                    categories=fin_cats,
+                    values=fin_vals,
+                    measures=fin_meas,
+                    prefix="$",
+                    suffix="B",
+                    is_dark=True
+                )
+                st.plotly_chart(waterfall_fig, use_container_width=True)
+
+    with t_col:
+        with st.container(key="panel_card"):
+            if is_eco:
+                st.markdown("##### 🌳 Decomposition Tree: Water Volume by Sector & Shift")
+                tree_df = filtered_fact.copy()
+                shift_names = {1: "Shift 1 (Day)", 2: "Shift 2 (Swing)", 3: "Shift 3 (Night)"}
+                tree_df["shift_label"] = tree_df["shift_id"].map(shift_names)
+                if "dim_facilities" in dims:
+                    tree_df = tree_df.merge(dims["dim_facilities"][["facility_id", "facility_name", "industry_type"]], on="facility_id", how="left")
+                else:
+                    tree_df["facility_name"] = tree_df["facility_id"]
+                    tree_df["industry_type"] = "Industrial"
+
+                treemap_fig = px.treemap(
+                    tree_df,
+                    path=["industry_type", "facility_name", "shift_label", "anomaly_category"],
+                    values="water_volume_liters",
+                    color="outflow_quality_score",
+                    color_continuous_scale="Teal",
+                    labels={
+                        "water_volume_liters": "Water Treated (L)",
+                        "outflow_quality_score": "Quality Score"
+                    }
+                )
+                treemap_fig.update_layout(height=380)
+                apply_plotly_theme(treemap_fig, is_dark=True)
+                st.plotly_chart(treemap_fig, use_container_width=True)
+            else:
+                st.markdown("##### 🌳 Decomposition Tree: Revenue by Genre & Decision")
+                treemap_fig = px.treemap(
+                    fact_df,
+                    path=["genre", "content_type", "decision", "title"],
+                    values="total_revenue",
+                    color="content_roi",
+                    color_continuous_scale="Viridis",
+                    labels={
+                        "total_revenue": "Total Revenue ($)",
+                        "content_roi": "Content ROI"
+                    }
+                )
+                treemap_fig.update_layout(height=380)
+                apply_plotly_theme(treemap_fig, is_dark=True)
+                st.plotly_chart(treemap_fig, use_container_width=True)
+
+    # -------------------------------------------------------------
+    # 3. INTERACTIVE POWER BI MATRIX & SLICER VIEW
+    # -------------------------------------------------------------
+    with st.container(key="panel_card"):
+        if is_eco:
+            st.markdown("##### 📑 Power BI Matrix: Facility Benchmarking & KPI Variance Grid")
+            fac_summary_df = pd.DataFrame(analytics["facility_kpis"])
+            display_fac = fac_summary_df[[
+                "facility_name", "industry_type", "wer_ratio", "target_kpi", "kpi_variance_pct", "anomaly_count", "quality_score"
+            ]].copy()
+            display_fac.columns = [
+                "Facility Name", "Industry Sector", "Observed WER (L/kWh)", "Target KPI", "Variance (%)", "Anomalies Flagged", "Effluent Quality"
+            ]
+            st.dataframe(display_fac, use_container_width=True, height=220)
+        else:
+            st.markdown("##### 📑 Power BI Matrix: Content ROI & Decision Scorecard")
+            cols = ["title", "genre", "content_type", "release_year", "total_revenue", "production_budget", "content_roi", "decision"]
+            matrix_df = fact_df[cols].copy()
+            matrix_df["total_revenue"] = matrix_df["total_revenue"].apply(lambda x: f"${x:,.0f}")
+            matrix_df["production_budget"] = matrix_df["production_budget"].apply(lambda x: f"${x:,.0f}")
+            matrix_df["content_roi"] = matrix_df["content_roi"].apply(lambda x: f"+{x*100:.1f}%")
+            matrix_df.columns = ["Title", "Genre", "Format", "Year", "Gross Revenue", "Budget", "Content ROI", "Decision Candidate"]
+            st.dataframe(matrix_df.head(25), use_container_width=True, height=260)
+
+    # -------------------------------------------------------------
+    # 4. POWER BI DAX MEASURES & SEMANTIC MODEL STUDIO
+    # -------------------------------------------------------------
+    with st.container(key="panel_card"):
+        st.markdown("##### 📐 Power BI DAX Studio & Semantic Data Model")
+        dax_file_path = "powerbi/EcoMetrics_Industrial_Measures.dax" if is_eco else "powerbi/CPIP_Entertainment_Measures.dax"
+        dax_code = ""
+        if os.path.exists(dax_file_path):
+            with open(dax_file_path, "r", encoding="utf-8") as f:
+                dax_code = f.read()
+
+        d_col1, d_col2 = st.columns([8, 4])
+        with d_col1:
+            st.caption(f"Active Production DAX Measure Library for **{header_title}**")
+            st.code(dax_code, language="sql")
+        with d_col2:
+            st.markdown("###### 📦 Power BI Artifacts & Connectors")
+            st.info(
+                "**Ready-to-Deploy Assets:**\n\n"
+                "• Official Star Schema relational tables\n"
+                "• 1-to-Many cardinality model relationships\n"
+                "• Kimball dimensional topology\n"
+                "• Pre-calculated business DAX measures"
+            )
+            with st.container(key="btn_primary"):
+                st.download_button(
+                    label="📥 Download DAX Library (.dax)",
+                    data=dax_code,
+                    file_name=os.path.basename(dax_file_path),
+                    mime="text/plain",
+                    use_container_width=True
+                )
+            
+            guide_path = "powerbi/PowerBI_Data_Model_Guide.md"
+            if os.path.exists(guide_path):
+                with open(guide_path, "r", encoding="utf-8") as f:
+                    guide_md = f.read()
+                st.download_button(
+                    label="📘 Download Power BI Blueprint (.md)",
+                    data=guide_md,
+                    file_name="PowerBI_Data_Model_Guide.md",
+                    mime="text/markdown",
+                    use_container_width=True
+                )
 
 
 # =============================================================================
