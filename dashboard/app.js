@@ -1034,10 +1034,10 @@ function setupThemeToggle() {
   if (sbBtnDark) sbBtnDark.addEventListener('click', (e) => { e.preventDefault(); applyTheme('dark'); });
   if (sbBtnLight) sbBtnLight.addEventListener('click', (e) => { e.preventDefault(); applyTheme('light'); });
 
-  // Default to executive Light Theme on initial visit / upgrade
-  let savedTheme = 'light';
+  // Default to obsidian Dark Theme on initial visit / upgrade
+  let savedTheme = 'dark';
   try {
-    savedTheme = localStorage.getItem('cinepulse_theme_v2') || localStorage.getItem('cinepulse_theme') || 'light';
+    savedTheme = localStorage.getItem('cinepulse_theme_v3') || localStorage.getItem('cinepulse_theme') || 'dark';
   } catch(e) {}
 
   applyTheme(savedTheme, true);
@@ -1070,7 +1070,7 @@ function applyTheme(theme, skipRender = false) {
   }
 
   try {
-    localStorage.setItem('cinepulse_theme_v2', theme);
+    localStorage.setItem('cinepulse_theme_v3', theme);
     localStorage.setItem('cinepulse_theme', theme);
   } catch (e) {}
 
