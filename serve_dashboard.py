@@ -56,8 +56,19 @@ class DashboardHandler(SimpleHTTPRequestHandler):
         # Clean logging
         sys.stderr.write(f"[CPIP {self.log_date_time_string()}] {format % args}\n")
 
+import socket
+
+def is_port_available(port: int) -> bool:
+    """Checks whether a port is truly available without socket sharing."""
+    try:
+        with socket.socket(socket.AF_INET, socket.SOCK_STREAM) as s:
+            s.bind(('0.0.0.0', port))
+            return True
+    except OSError:
+        return False
+
 class RobustServer(ThreadingHTTPServer):
-    allow_reuse_address = True
+    allow_reuse_address = (sys.platform != 'win32')
     daemon_threads = True
 
 if __name__ == '__main__':
@@ -67,13 +78,15 @@ if __name__ == '__main__':
 
     server = None
     active_port = requested_port
-    for p in [requested_port, 8081, 8082, 8088]:
-        try:
-            server = RobustServer(('0.0.0.0', p), DashboardHandler)
-            active_port = p
-            break
-        except OSError:
-            continue
+    candidate_ports = [requested_port] + [p for p in [8081, 8082, 8088, 8888] if p != requested_port]
+    for p in candidate_ports:
+        if is_port_available(p):
+            try:
+                server = RobustServer(('0.0.0.0', p), DashboardHandler)
+                active_port = p
+                break
+            except OSError:
+                continue
 
     if server is None:
         sys.exit(f"[CPIP] Error: Could not bind to any candidate port starting from {requested_port}")
