@@ -50,6 +50,7 @@ code, pre, [data-testid="stCode"] {
 }
 
 /* 4. Glassmorphic Metric Cards with Glowing Borders */
+div[class*="st-key-metric_"] > div,
 .st-key-metric_cyan > div,
 .st-key-metric_violet > div,
 .st-key-metric_emerald > div,
@@ -65,9 +66,11 @@ code, pre, [data-testid="stCode"] {
 }
 
 /* Cyan Glow */
+div[class*="st-key-metric_cyan"] > div,
 .st-key-metric_cyan > div {
   border: 1px solid rgba(0, 210, 255, 0.25) !important;
 }
+div[class*="st-key-metric_cyan"] > div:hover,
 .st-key-metric_cyan > div:hover {
   border-color: #00d2ff !important;
   box-shadow: 0 0 25px rgba(0, 210, 255, 0.3) !important;
@@ -75,9 +78,11 @@ code, pre, [data-testid="stCode"] {
 }
 
 /* Violet Glow */
+div[class*="st-key-metric_violet"] > div,
 .st-key-metric_violet > div {
   border: 1px solid rgba(139, 92, 246, 0.25) !important;
 }
+div[class*="st-key-metric_violet"] > div:hover,
 .st-key-metric_violet > div:hover {
   border-color: #8b5cf6 !important;
   box-shadow: 0 0 25px rgba(139, 92, 246, 0.3) !important;
@@ -85,9 +90,11 @@ code, pre, [data-testid="stCode"] {
 }
 
 /* Emerald Glow */
+div[class*="st-key-metric_emerald"] > div,
 .st-key-metric_emerald > div {
   border: 1px solid rgba(16, 185, 129, 0.25) !important;
 }
+div[class*="st-key-metric_emerald"] > div:hover,
 .st-key-metric_emerald > div:hover {
   border-color: #10b981 !important;
   box-shadow: 0 0 25px rgba(16, 185, 129, 0.3) !important;
@@ -95,9 +102,11 @@ code, pre, [data-testid="stCode"] {
 }
 
 /* Red Glow */
+div[class*="st-key-metric_red"] > div,
 .st-key-metric_red > div {
   border: 1px solid rgba(229, 9, 20, 0.25) !important;
 }
+div[class*="st-key-metric_red"] > div:hover,
 .st-key-metric_red > div:hover {
   border-color: #e50914 !important;
   box-shadow: 0 0 25px rgba(229, 9, 20, 0.3) !important;
@@ -105,9 +114,11 @@ code, pre, [data-testid="stCode"] {
 }
 
 /* Amber Glow */
+div[class*="st-key-metric_amber"] > div,
 .st-key-metric_amber > div {
   border: 1px solid rgba(245, 158, 11, 0.25) !important;
 }
+div[class*="st-key-metric_amber"] > div:hover,
 .st-key-metric_amber > div:hover {
   border-color: #f59e0b !important;
   box-shadow: 0 0 25px rgba(245, 158, 11, 0.3) !important;
@@ -115,9 +126,11 @@ code, pre, [data-testid="stCode"] {
 }
 
 /* Blue Glow */
+div[class*="st-key-metric_blue"] > div,
 .st-key-metric_blue > div {
   border: 1px solid rgba(59, 130, 246, 0.25) !important;
 }
+div[class*="st-key-metric_blue"] > div:hover,
 .st-key-metric_blue > div:hover {
   border-color: #3b82f6 !important;
   box-shadow: 0 0 25px rgba(59, 130, 246, 0.3) !important;

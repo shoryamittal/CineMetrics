@@ -60,7 +60,8 @@ def render_metric_card(
     trend: str = "",
     trend_type: str = "positive",
     variant: str = "cyan",
-    fill_pct: int = 75
+    fill_pct: int = 75,
+    key: str | None = None
 ) -> None:
     """Renders a modern glassmorphic KPI card inside a keyed container (.st-key-*)."""
     color_map = {
@@ -87,7 +88,9 @@ def render_metric_card(
       <span style="color: #94a3b8; font-size: 11px;">{sub}</span>
     </div>
     """
-    with st.container(key=f"metric_{variant}"):
+    clean_label = "".join(c for c in label.lower() if c.isalnum() or c == "_").replace(" ", "_")
+    card_key = key or f"metric_{variant}_{clean_label}"
+    with st.container(key=card_key):
         st.markdown(html, unsafe_allow_html=True)
 
 

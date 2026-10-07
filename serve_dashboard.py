@@ -41,7 +41,7 @@ class DashboardHandler(SimpleHTTPRequestHandler):
 
         try:
             return super().do_GET()
-        except (ConnectionResetError, BrokenPipeError):
+        except (ConnectionResetError, BrokenPipeError, ConnectionAbortedError, OSError):
             pass
 
     def end_headers(self):
@@ -70,6 +70,10 @@ def is_port_available(port: int) -> bool:
 class RobustServer(ThreadingHTTPServer):
     allow_reuse_address = (sys.platform != 'win32')
     daemon_threads = True
+
+    def handle_error(self, request, client_address):
+        # Gracefully swallow client socket drops without terminating server
+        pass
 
 if __name__ == '__main__':
     requested_port = int(sys.argv[1]) if len(sys.argv) > 1 else PORT
