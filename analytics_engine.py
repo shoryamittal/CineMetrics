@@ -241,7 +241,7 @@ class ExecutiveAnalyticsEngine:
         lowest_fac = facility_kpis[-1] if facility_kpis else None
         if lowest_fac and lowest_fac["kpi_variance_pct"] < 0:
             recommendations.append(
-                f"**Audit {lowest_fac['facility_name']} ({lowest_fac['industry_type']}):** Operating at {lowest_fac['wer_ratio']} L/kWh ({lowest_fac['kpi_variance_pct']}% below target {lowest_fac['target_kpi']} L/kWh). Implementing closed-loop 3D TRASAR™ chemical dosing will recover an estimated ${(lowest_fac['total_energy_kwh'] * 0.12 * 0.115):,.0f} in annual energy overhead."
+                f"**Audit {lowest_fac['facility_name']} ({lowest_fac['industry_type']}):** Operating at {lowest_fac['wer_ratio']} L/kWh ({lowest_fac['kpi_variance_pct']}% below target {lowest_fac['target_kpi']} L/kWh). Implementing closed-loop automated fluorometric chemical dosing will recover an estimated ${(lowest_fac['total_energy_kwh'] * 0.12 * 0.115):,.0f} in annual energy overhead."
             )
         
         recommendations.append(
