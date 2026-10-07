@@ -53,8 +53,9 @@ class DashboardHandler(SimpleHTTPRequestHandler):
         super().end_headers()
 
     def log_message(self, format, *args):
-        # Clean logging
-        sys.stderr.write(f"[CPIP {self.log_date_time_string()}] {format % args}\n")
+        # Clean logging to stdout (prevents PowerShell NativeCommandError on Windows)
+        sys.stdout.write(f"[CPIP {self.log_date_time_string()}] {format % args}\n")
+        sys.stdout.flush()
 
 import socket
 
