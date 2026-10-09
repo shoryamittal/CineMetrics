@@ -126,10 +126,16 @@ class DataModeler:
         df["Facility_ID"] = cleaned_facilities
         self._log_audit_step("TEXT_NORMALIZATION", "Harmonized dirty Facility_ID aliases to canonical identifiers.", fac_mismatches)
 
-        # Outflow Quality Score Dirty String Parsing
-        df["Outflow_Quality_Score"] = pd.to_numeric(df["Outflow_Quality_Score"], errors="coerce")
+        # Telemetry Dirty String Parsing & Type Coercion
+        df["Water_Volume_Liters"] = pd.to_numeric(df.get("Water_Volume_Liters", np.nan), errors="coerce")
+        df["Energy_Consumption_kWh"] = pd.to_numeric(df.get("Energy_Consumption_kWh", 550.0), errors="coerce").fillna(550.0)
+        df["Chemical_Dosing_mg_L"] = pd.to_numeric(df.get("Chemical_Dosing_mg_L", np.nan), errors="coerce")
+        df["Sensor_Temperature_C"] = pd.to_numeric(df.get("Sensor_Temperature_C", 26.0), errors="coerce").fillna(26.0)
+        df["Valve_Pressure_PSI"] = pd.to_numeric(df.get("Valve_Pressure_PSI", 74.0), errors="coerce").fillna(74.0)
+        df["pH_Level"] = pd.to_numeric(df.get("pH_Level", 7.35), errors="coerce").fillna(7.35)
+        df["Outflow_Quality_Score"] = pd.to_numeric(df.get("Outflow_Quality_Score", np.nan), errors="coerce")
         coerced_quality_nulls = df["Outflow_Quality_Score"].isna().sum()
-        self._log_audit_step("TYPE_COERCION", "Sanitized Outflow_Quality_Score strings to numeric floats.", coerced_quality_nulls)
+        self._log_audit_step("TYPE_COERCION", "Sanitized telemetry numeric strings and parsed floats.", coerced_quality_nulls)
 
         # ---------------------------------------------------------------------
         # CHECKPOINT 2: BUSINESS-RULE NULL IMPUTATION

@@ -57,7 +57,7 @@ class DataQualityProfiler:
         # 1. Missing Data Rate
         missing_count = int(df.isna().sum().sum())
         missing_rate = (missing_count / total_cells) if total_cells > 0 else 0.0
-        missing_by_col = {col: round(float(df[col].isna().mean()) * 100, 2) for col in df.columns}
+        missing_by_col = {col: (round(float(df[col].isna().mean()) * 100, 2) if total_rows > 0 else 0.0) for col in df.columns}
         completeness_score = max(0.0, 100.0 - (missing_rate * 100.0 * 2.5))
 
         # 2. Outliers & Anomalies
@@ -256,7 +256,7 @@ class ExecutiveAnalyticsEngine:
             "overall_wer_ratio": overall_wer,
             "avg_outflow_quality": round(avg_quality_score, 2),
             "total_anomalies": total_anomalies,
-            "anomaly_rate_pct": round((total_anomalies / len(fact_df)) * 100, 2),
+            "anomaly_rate_pct": round((total_anomalies / max(1, len(fact_df))) * 100, 2),
             "anomaly_by_category": anomaly_by_cat,
             "water_saved_million_liters": water_saved_million_liters,
             "water_saved_m3": water_saved_m3,
@@ -291,10 +291,11 @@ class ExecutiveAnalyticsEngine:
         # WR = (v / (v + m)) * R + (m / (v + m)) * C
         R = fact_df["imdb_rating"]
         v = fact_df["votes"]
-        C = float(R.mean())
-        m = float(v.quantile(0.60))  # 60th percentile of votes as threshold
+        C = float(R.mean()) if not R.empty else 7.0
+        m = float(v.quantile(0.60)) if not v.empty else 0.0
         
-        weighted_ratings = ((v / (v + m)) * R) + ((m / (v + m)) * C)
+        denom = (v + m).replace(0, np.nan)
+        weighted_ratings = (((v / denom) * R) + ((m / denom) * C)).fillna(C)
         fact_with_wr = fact_df.copy()
         fact_with_wr["weighted_rating"] = weighted_ratings.round(2)
         top_rated = fact_with_wr.sort_values(by="weighted_rating", ascending=False).head(5)
@@ -326,9 +327,10 @@ class ExecutiveAnalyticsEngine:
         recommendations.append(
             f"**Franchise Capital Allocation:** '{top_genre['genre']}' delivers platform-leading capital yield (+{top_genre['avg_roi_pct']}% ROI). Expanding multi-part originals in this category provides optimal payback."
         )
-        recommendations.append(
-            f"**Bayesian Rating Anchor:** Title *'{top_rated.iloc[0]['title']}'* leads global audience affinity with a **{top_rated.iloc[0]['weighted_rating']}/10** weighted score across {int(top_rated.iloc[0]['votes']):,} verified voting accounts."
-        )
+        if not top_rated.empty:
+            recommendations.append(
+                f"**Bayesian Rating Anchor:** Title *'{top_rated.iloc[0]['title']}'* leads global audience affinity with a **{top_rated.iloc[0]['weighted_rating']}/10** weighted score across {int(top_rated.iloc[0]['votes']):,} verified voting accounts."
+            )
         recommendations.append(
             f"**Portfolio Health:** Total catalog generated **${total_revenue / 1e9:.2f}B** in revenue against **${total_budget / 1e9:.2f}B** production budget (+{avg_roi * 100:.1f}% average title ROI)."
         )
